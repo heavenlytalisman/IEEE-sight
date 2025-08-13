@@ -3,228 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Organization Name] - [Your Tagline]</title>
+    <title>IEEE SIGHT Campus Chapter | Make it simple, but significant</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="logo">[YOUR LOGO]</div>
-            <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#programs">PROGRAMS</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <span class="nav__logo">IEEE SIGHT</span>
+            </div>
+            <ul class="nav__menu" id="nav-menu">
+                <li><a href="#home" class="nav__link">Home</a></li>
+                <li><a href="#mission" class="nav__link">Mission</a></li>
+                <li><a href="#impact" class="nav__link">Impact</a></li>
+                <li><a href="#projects" class="nav__link">Projects</a></li>
+                <li><a href="#team" class="nav__link">Team</a></li>
+                <li><a href="#join" class="nav__link">Join Us</a></li>
             </ul>
-            <button class="donate-btn">DONATE NOW</button>
-            <div class="mobile-menu-toggle">
+            <button class="nav__toggle" id="nav-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-        </div>
-    </nav>
+            </button>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1 class="hero-title">[YOUR ORGANIZATION] [YOUR MISSION].</h1>
-            <div class="video-placeholder">[Video Placeholder]</div>
-            <p class="hero-subtitle">Together, we address [challenge 1], [challenge 2] and [challenge 3].</p>
-            <button class="cta-button">DONATE NOW</button>
-        </div>
-    </section>
-
-    <!-- Main Mission Statement -->
-    <section class="mission-intro">
-        <div class="container">
-            <h2 class="mission-title">THE [YOUR ORGANIZATION NAME] IS A REGISTERED [COUNTRY] CHARITY ADDRESSING [NUMBER] CRITICAL AND INTERCONNECTED CHALLENGES:</h2>
-            <div class="challenges-list">
-                <h3 class="challenge-item">THE RISE OF [CHALLENGE 1 DESCRIPTION].</h3>
-                <h3 class="challenge-item">LACK OF [CHALLENGE 2 DESCRIPTION].</h3>
-                <h3 class="challenge-item">BARRIERS TO<br>[CHALLENGE 3 DESCRIPTION]<br>[TARGET DEMOGRAPHIC].</h3>
-            </div>
-            <p class="mission-description">In [your location], [challenge 1] and [challenge 2] create a ripple effect that impacts individuals, families, and communities. These challenges are compounded by a lack of access to [challenge 3], which are crucial for breaking cycles of [problem] and creating long-term opportunities for success.</p>
-        </div>
-    </section>
-
-    <!-- Challenge 1 Stats -->
-    <section class="stats-section challenge-1">
-        <div class="container">
-            <h2 class="stats-title">[CHALLENGE 1 NAME]</h2>
-            <div class="stats-content">
-                <p><strong>[X] in [Y]</strong> [demographic] in [location] (approximately [number] people) experience [challenge 1].</p>
-                <p><strong>[X] in [Y]</strong> [specific group] live without consistent access to [specific need], facing [consequence] that impacts their [area of impact] and ability to [specific outcome].</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Challenge 2 Stats -->
-    <section class="stats-section challenge-2">
-        <div class="container">
-            <h2 class="stats-title">[CHALLENGE 2 NAME]</h2>
-            <div class="stats-content">
-                <p><strong>[X] in [Y]</strong> [demographic] face [challenge 2], with untreated conditions leading to [consequence 1], [consequence 2], and [consequence 3].</p>
-                <p>[Challenge 1] directly impacts [challenge 2], creating [symptom 1], [symptom 2], and [symptom 3] that exacerbate symptoms.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Challenge 3 Stats -->
-    <section class="stats-section challenge-3">
-        <div class="container">
-            <h2 class="stats-title">[CHALLENGE 3 NAME]</h2>
-            <div class="stats-content">
-                <p>Only <strong>[percentage]%</strong> of [demographic 1] pursue [opportunity], compared to <strong>[percentage]%</strong> from [demographic 2].</p>
-            </div>
-            <div class="source-credit">Source: [Your Data Source]</div>
-        </div>
-    </section>
-
-    <!-- Scrolling Donate Background -->
-    <section class="scrolling-bg donate-scroll">
-        <div class="scrolling-text">
-            DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE
-        </div>
-    </section>
-
-    <!-- Mission Clear -->
-    <section class="mission-clear">
-        <div class="container">
-            <h2 class="section-title">OUR MISSION IS CLEAR.</h2>
-            <p class="mission-statement">Our mission is to empower [target demographic] in [location] by addressing the interconnected challenges of [challenge 1], [challenge 2], and [challenge 3]. Through impactful programs and partnerships, we provide the resources, tools, and support needed to break cycles of [problem] and create lasting opportunities for a better future.</p>
-            
-            <div class="impact-stats">
-                <div class="stat-item">
-                    <span class="stat-number">+ [XXX]</span>
-                    <p>[Achievement description] in our last [time period], spreading [positive outcome] during the [specific period].</p>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">[XXX] H</span>
-                    <p>Hours of [service type] and [service type] provided to [target group] in [geographic area].</p>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">+ [XX]</span>
-                    <p>[Partner type] partnered with across [region] to empower [target group] and their families.</p>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">+ [XX]</span>
-                    <p>Dedicated volunteers working tirelessly to make our programs possible.</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Make it simple, but significant</h1>
+                    <p class="hero__subtitle">While others complicate, we make humanitarian technology accessible and impactful</p>
+                    <div class="hero__stats">
+                        <div class="stat">
+                            <span class="stat__number">42,000+</span>
+                            <span class="stat__label">Global Members</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">130+</span>
+                            <span class="stat__label">Countries</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">$5,000</span>
+                            <span class="stat__label">Tech4Good Grants</span>
+                        </div>
+                    </div>
+                    <div class="hero__actions">
+                        <a href="#join" class="btn btn--primary">Join Our Chapter</a>
+                        <a href="#projects" class="btn btn--outline">View Projects</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Major Initiative -->
-    <section class="major-initiative">
-        <div class="container">
-            <h3 class="initiative-title">IN [YEAR], THE [YOUR ORGANIZATION] LAUNCHED ITS [ORDINAL] INITIATIVE, DELIVERING [NUMBER] [ITEMS] TO [TARGET GROUP] ACROSS [LOCATION].</h3>
-            <h3 class="initiative-subtitle">WHAT BEGAN AS A SMALL ACT OF KINDNESS HAS GROWN INTO A MOVEMENT, WITH MANY [SERVICES/ITEMS] BEING DELIVERED ANNUALLY FOR THE PAST [TIME PERIOD].</h3>
-        </div>
-    </section>
-
-    <!-- Vision Beyond -->
-    <section class="vision-beyond">
-        <div class="container">
-            <h2 class="section-title">OUR VISION GOES BEYOND [PRIMARY SERVICE].</h2>
-            <p>Recognizing the struggles [target group] face with [challenge 1] and [challenge 2], we've partnered with <strong>[Partner 1]</strong> and <strong>[Partner 2]</strong> to equip [target group] with tools and resources for a successful transition from [stage 1] to [stage 2] or [stage 3].</p>
-            <p>By collaborating with [partner types], families, and organizations, we aim to reduce the barriers created by [root cause] and empower [target group] to see a brighter future.</p>
-        </div>
-    </section>
-
-    <!-- Scrolling Join Us Background -->
-    <section class="scrolling-bg join-scroll">
-        <div class="scrolling-text">
-            JOIN US IN MAKING A DIFFERENCE JOIN US IN MAKING A DIFFERENCE JOIN US IN MAKING A DIFFERENCE JOIN US IN MAKING A DIFFERENCE JOIN US IN MAKING A DIFFERENCE JOIN US IN MAKING A DIFFERENCE
-        </div>
-    </section>
-
-    <!-- News Section -->
-    <section class="news-section">
-        <div class="container">
-            <h2 class="section-title">[YOUR ORGANIZATION] NEWS</h2>
-            <div class="news-content">
-                <p>In [year], the [Your Organization] launched its [ordinal] initiative, delivering [number] [items] to [target group] across [location]. What began as a small act of kindness has grown into a movement, with many [services] being delivered annually for the past [time period].</p>
-                <p>Recognizing the struggles [target group] face with [challenge 1] and [challenge 2], we've partnered with [Partner 1] and [Partner 2] to equip [target group] with tools and resources for a successful transition from [stage 1] to [stage 2] or [stage 3].</p>
-                <button class="see-more-btn">See More</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- President Message -->
-    <section class="president-message">
-        <div class="container">
-            <div class="message-content">
-                <h3>Welcome to [Your Organization]!</h3>
-                <p>We are dedicated to making a difference in the lives of [target demographic] facing [challenge 1] and [challenge 2] challenges. In [current year], we're expanding our impact through initiatives like the [Program Name] program, delivering over [number] [items] and partnering with innovative platforms like [Partner 1] and [Partner 2] to provide [target group] with tools for [service 1] and [service 2] support.</p>
-                <p>Your support, whether its donations, volunteering or spreading the word will help us create lasting change. Together there is hope, we can build a stronger community together.</p>
-                <p>Thank you for joining us on this journey!</p>
-                <div class="signature">
-                    <p>Warm regards,</p>
-                    <p><strong>[Leader Name] ([Nickname])</strong></p>
-                    <p>[Title] of [Your Organization]</p>
+        <!-- Mission Section -->
+        <section id="mission" class="section section--light">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Our Promise to Communities</h2>
+                    <p class="section__text">A global network of IEEE volunteers partnering with underserved communities to leverage technology for sustainable development</p>
+                </div>
+                <div class="mission__grid">
+                    <div class="mission__item">
+                        <h3>Sustainable Power</h3>
+                        <p>Clean energy solutions for remote communities</p>
+                    </div>
+                    <div class="mission__item">
+                        <h3>Water & Sanitation</h3>
+                        <p>Smart water management and purification systems</p>
+                    </div>
+                    <div class="mission__item">
+                        <h3>Medical Technology</h3>
+                        <p>Healthcare innovations for underserved populations</p>
+                    </div>
+                    <div class="mission__item">
+                        <h3>ICT & Communications</h3>
+                        <p>Bridging the digital divide with accessible technology</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Get Involved CTA -->
-    <section class="get-involved-cta">
-        <div class="container">
-            <h2 class="cta-title">GET<br>INVOLVED<br>TODAY!</h2>
-        </div>
-    </section>
-
-    <!-- Scrolling Organization Name Background -->
-    <section class="scrolling-bg org-scroll">
-        <div class="scrolling-text">
-            [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG] [YOUR ORG]
-        </div>
-    </section>
-
-    <!-- Merchandise Section -->
-    <section class="merch-section">
-        <div class="container">
-            <h3 class="merch-title">NEW MERCH COMING SOON</h3>
-            <p>Stay tuned.</p>
-        </div>
-    </section>
-
-    <!-- Final Donate Scroll -->
-    <section class="scrolling-bg donate-scroll-final">
-        <div class="scrolling-text">
-            DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE DONATE
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="container">
-            <h2 class="section-title">CONTACT US</h2>
-            <p>Want to learn more about volunteering or supporting our mission? Get in touch, and let's create [your mission theme] together!</p>
-            <div class="contact-info">
-                <p><strong>Email:</strong> [your-email@yourorganization.com]</p>
-                <p>Follow us on our social networks</p>
-                <div class="newsletter-signup">
-                    <p>Sign up to hear how your donation and support is having an impact!</p>
-                    <button class="newsletter-btn">SIGN UP</button>
+        <!-- Impact Section -->
+        <section id="impact" class="section">
+            <div class="container">
+                <div class="impact__content">
+                    <div class="impact__text">
+                        <h2 class="section__title">Your Impact:</h2>
+                        <p class="section__subtitle">Simplicity that counts.</p>
+                        <p class="section__description">We transform complex global challenges into simple, clearly understandable and inspiring technological solutions that create value-driven impact for underserved communities.</p>
+                    </div>
+                    <div class="impact__image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/f69c5de426d2499db3c873724a416ea82c94ba8a.png" alt="Sustainable Technology Impact" class="impact__img">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Why Join Section -->
+        <section id="why-join" class="section section--dark">
+            <div class="container">
+                <div class="section__header section__header--center">
+                    <h2 class="section__title section__title--light">Why join IEEE SIGHT?</h2>
+                    <p class="section__subtitle section__subtitle--light">Innovative. Connected. Your catalyst in humanitarian technology.</p>
+                </div>
+                <div class="why-join__grid">
+                    <div class="why-join__item">
+                        <h3>Rapid Innovation</h3>
+                        <p>Fast-track your ideas from concept to implementation with Tech4Good funding</p>
+                    </div>
+                    <div class="why-join__item">
+                        <h3>Global Network</h3>
+                        <p>Connect with 42,000+ like-minded engineers across 130+ countries</p>
+                    </div>
+                    <div class="why-join__item">
+                        <h3>Diverse Projects</h3>
+                        <p>Work on meaningful projects spanning energy, healthcare, water, and ICT</p>
+                    </div>
+                    <div class="why-join__item">
+                        <h3>Sustainable Impact</h3>
+                        <p>Create lasting change in underserved communities worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section section--light">
+            <div class="container">
+                <div class="projects__header">
+                    <h2 class="section__title">Our Solutions</h2>
+                    <p class="section__text">Often seemingly simple solutions prove to be the most difficult to implement. In exactly this combination, you win with us.</p>
+                </div>
+                <div class="projects__showcase">
+                    <div class="project__card">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/40943f0db7bcc0ad13ed5600d8d867bb6f1c7a24.png" alt="Community Engineering Projects" class="project__image">
+                        <div class="project__content">
+                            <h3>Community Electronics</h3>
+                            <p>Hands-on electronics projects for local communities</p>
+                        </div>
+                    </div>
+                    <div class="project__card">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/5e9f9cf3455dca08ace5b87656c7f5ecef479a1c.png" alt="Technical Demonstrations" class="project__image">
+                        <div class="project__content">
+                            <h3>Technical Education</h3>
+                            <p>Demonstrations and workshops for skill development</p>
+                        </div>
+                    </div>
+                    <div class="project__card">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/fe4eb18c79f4b690126a012bda78aa97e494d924.png" alt="Student Collaboration" class="project__image">
+                        <div class="project__content">
+                            <h3>Student Innovation</h3>
+                            <p>Collaborative engineering solutions by students</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section">
+            <div class="container">
+                <div class="team__content">
+                    <div class="team__text">
+                        <h2 class="section__title">A team that counts.</h2>
+                        <p class="section__subtitle">Simplicity that works.</p>
+                        <p class="section__description">Get to know our collaborative team. Each member stands for making results simpler for communities to use, so you can make decisions with confidence. Always under the promise: To make it simple, but significant.</p>
+                    </div>
+                    <div class="team__image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1754991217/pplx_project_search_images/0a18007f69d7e89d0f4ce531fefbe461b49a2a12.png" alt="Collaborative Team" class="team__img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section id="values" class="section section--accent">
+            <div class="container">
+                <div class="values__header">
+                    <h2 class="section__title">A new principle</h2>
+                    <p class="section__text">Trust the voices of the communities we serve. They tell you most clearly how we simplify complexity for sustainable development.</p>
+                </div>
+                <div class="values__grid">
+                    <div class="value__item">
+                        <h3>Simplicity that works.</h3>
+                    </div>
+                    <div class="value__item">
+                        <h3>Discover how we change humanitarian technology for community success.</h3>
+                    </div>
+                    <div class="value__item">
+                        <h3>Simplicity as guiding principle</h3>
+                    </div>
+                    <div class="value__item">
+                        <h3>Empathy as added value</h3>
+                    </div>
+                    <div class="value__item">
+                        <h3>High standards, low egos</h3>
+                    </div>
+                    <div class="value__item">
+                        <h3>Agility over bureaucracy</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section id="join" class="section section--cta">
+            <div class="container">
+                <div class="join__content">
+                    <h2 class="section__title section__title--light">Simplicity meets excellence: Join our team.</h2>
+                    <p class="section__subtitle section__subtitle--light">IEEE SIGHT – The essence of our promise: Humanitarian technology to the point!</p>
+                    <p class="join__description">Transform with us the often unnecessarily complex world of technology deployment, making it simpler and faster to implement for our communities. Help us develop new standards in humanitarian engineering that can change everything.</p>
+                    <div class="join__actions">
+                        <a href="#contact" class="btn btn--primary btn--lg">Start Your Journey</a>
+                        <a href="#projects" class="btn btn--outline btn--lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="join__image">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/31d3787ded1c5ba563fea6451ff44abfeb3f8c2a.png" alt="IEEE SIGHT Community" class="join__img">
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <button class="footer-donate-btn">DONATE</button>
-                <div class="footer-info">
-                    <p>Copyright © [Current Year] [Your Organization] - All Rights Reserved.</p>
-                    <p>[Country] Charitable Registration number - [Registration Number]</p>
-                    <a href="#" class="privacy-link">Privacy Policy</a>
+            <div class="footer__content">
+                <div class="footer__info">
+                    <h3>IEEE SIGHT Campus Chapter</h3>
+                    <p>Making humanitarian technology simple, but significant</p>
                 </div>
+                <div class="footer__links">
+                    <a href="https://sight.ieee.org" target="_blank">IEEE SIGHT Global</a>
+                    <a href="https://ieee.org" target="_blank">IEEE.org</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 IEEE SIGHT Campus Chapter. All rights reserved.</p>
             </div>
         </div>
     </footer>
