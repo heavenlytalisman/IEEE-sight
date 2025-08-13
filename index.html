@@ -1,162 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE SIGHT Campus Chapter | Make it simple, but significant</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>IEEE SIGHT Chapter | Special Interest Group on Humanitarian Technology</title>
+    <meta name="description" content="IEEE SIGHT chapter leveraging technology for sustainable development and humanitarian impact in local communities." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav container">
-            <div class="nav__brand">
-                <span class="nav__logo">IEEE SIGHT</span>
-            </div>
-            <ul class="nav__menu" id="nav-menu">
-                <li><a href="#home" class="nav__link">Home</a></li>
-                <li><a href="#mission" class="nav__link">Mission</a></li>
-                <li><a href="#impact" class="nav__link">Impact</a></li>
-                <li><a href="#projects" class="nav__link">Projects</a></li>
-                <li><a href="#team" class="nav__link">Team</a></li>
-                <li><a href="#join" class="nav__link">Join Us</a></li>
-            </ul>
-            <button class="nav__toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#">
+                <div class="logo-mark">
+                    <span class="ieee-text">IEEE</span>
+                    <span class="sight-text">SIGHT</span>
+                </div>
+                <span class="chapter-name">Chapter Name</span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="navMenu">Menu</button>
+                <ul id="navMenu" class="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a class="cta" href="#join">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <main id="main">
         <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero__content">
-                    <h1 class="hero__title">Make it simple, but significant</h1>
-                    <p class="hero__subtitle">While others complicate, we make humanitarian technology accessible and impactful</p>
-                    <div class="hero__stats">
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <h1 class="reveal-up">
+                        Technology for
+                        <span class="highlight">Humanitarian Impact</span>
+                    </h1>
+                    <p class="lead reveal-up delay-1">
+                        A global network of IEEE volunteers partnering with underserved communities to leverage technology for sustainable development[6].
+                    </p>
+                    <div class="hero-stats reveal-up delay-2">
                         <div class="stat">
-                            <span class="stat__number">42,000+</span>
-                            <span class="stat__label">Global Members</span>
+                            <span class="stat-number">6+</span>
+                            <span class="stat-label">Active Members</span>
                         </div>
                         <div class="stat">
-                            <span class="stat__number">130+</span>
-                            <span class="stat__label">Countries</span>
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Community Projects</span>
                         </div>
                         <div class="stat">
-                            <span class="stat__number">$5,000</span>
-                            <span class="stat__label">Tech4Good Grants</span>
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Lives Impacted</span>
                         </div>
                     </div>
-                    <div class="hero__actions">
-                        <a href="#join" class="btn btn--primary">Join Our Chapter</a>
-                        <a href="#projects" class="btn btn--outline">View Projects</a>
+                    <div class="hero-ctas reveal-up delay-3">
+                        <a class="btn primary" href="#projects">View Projects</a>
+                        <a class="btn secondary" href="#about">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="tech-grid" aria-hidden="true">
+                        <div class="tech-card">
+                            <div class="icon">🌍</div>
+                            <span>Global Impact</span>
+                        </div>
+                        <div class="tech-card">
+                            <div class="icon">💡</div>
+                            <span>Innovation</span>
+                        </div>
+                        <div class="tech-card">
+                            <div class="icon">🤝</div>
+                            <span>Community</span>
+                        </div>
+                        <div class="tech-card">
+                            <div class="icon">⚡</div>
+                            <span>Technology</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Mission Section -->
-        <section id="mission" class="section section--light">
+        <!-- About Section -->
+        <section id="about" class="section">
             <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">Our Promise to Communities</h2>
-                    <p class="section__text">A global network of IEEE volunteers partnering with underserved communities to leverage technology for sustainable development</p>
+                <div class="section-header">
+                    <h2 class="reveal-up">About IEEE SIGHT</h2>
+                    <p class="section-subtitle reveal-up delay-1">
+                        The Special Interest Group on Humanitarian Technology connects IEEE volunteers globally[6]
+                    </p>
                 </div>
-                <div class="mission__grid">
-                    <div class="mission__item">
-                        <h3>Sustainable Power</h3>
-                        <p>Clean energy solutions for remote communities</p>
+                <div class="about-grid">
+                    <div class="about-content reveal-up delay-2">
+                        <h3>Our Mission</h3>
+                        <p>IEEE SIGHT groups consist of at least six IEEE members who come together to learn about sustainable development, foster relationships with their local communities, and leverage technology to address key issues[6].</p>
+                        
+                        <h3>Objectives</h3>
+                        <ul class="objectives-list">
+                            <li>Promote humanitarian technology activities and sustainable development[12]</li>
+                            <li>Increase awareness of technology's potential to improve living standards[12]</li>
+                            <li>Engage with NGOs, civil society organizations, and corporates[12]</li>
+                            <li>Work with global engineering community bodies[12]</li>
+                        </ul>
                     </div>
-                    <div class="mission__item">
-                        <h3>Water & Sanitation</h3>
-                        <p>Smart water management and purification systems</p>
-                    </div>
-                    <div class="mission__item">
-                        <h3>Medical Technology</h3>
-                        <p>Healthcare innovations for underserved populations</p>
-                    </div>
-                    <div class="mission__item">
-                        <h3>ICT & Communications</h3>
-                        <p>Bridging the digital divide with accessible technology</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Impact Section -->
-        <section id="impact" class="section">
-            <div class="container">
-                <div class="impact__content">
-                    <div class="impact__text">
-                        <h2 class="section__title">Your Impact:</h2>
-                        <p class="section__subtitle">Simplicity that counts.</p>
-                        <p class="section__description">We transform complex global challenges into simple, clearly understandable and inspiring technological solutions that create value-driven impact for underserved communities.</p>
-                    </div>
-                    <div class="impact__image">
-                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/f69c5de426d2499db3c873724a416ea82c94ba8a.png" alt="Sustainable Technology Impact" class="impact__img">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Join Section -->
-        <section id="why-join" class="section section--dark">
-            <div class="container">
-                <div class="section__header section__header--center">
-                    <h2 class="section__title section__title--light">Why join IEEE SIGHT?</h2>
-                    <p class="section__subtitle section__subtitle--light">Innovative. Connected. Your catalyst in humanitarian technology.</p>
-                </div>
-                <div class="why-join__grid">
-                    <div class="why-join__item">
-                        <h3>Rapid Innovation</h3>
-                        <p>Fast-track your ideas from concept to implementation with Tech4Good funding</p>
-                    </div>
-                    <div class="why-join__item">
-                        <h3>Global Network</h3>
-                        <p>Connect with 42,000+ like-minded engineers across 130+ countries</p>
-                    </div>
-                    <div class="why-join__item">
-                        <h3>Diverse Projects</h3>
-                        <p>Work on meaningful projects spanning energy, healthcare, water, and ICT</p>
-                    </div>
-                    <div class="why-join__item">
-                        <h3>Sustainable Impact</h3>
-                        <p>Create lasting change in underserved communities worldwide</p>
+                    <div class="about-visual reveal-fade">
+                        <div class="impact-chart">
+                            <div class="chart-item">
+                                <div class="chart-bar" style="--height: 85%"></div>
+                                <span>Community Engagement</span>
+                            </div>
+                            <div class="chart-item">
+                                <div class="chart-bar" style="--height: 70%"></div>
+                                <span>Tech Solutions</span>
+                            </div>
+                            <div class="chart-item">
+                                <div class="chart-bar" style="--height: 95%"></div>
+                                <span>Member Growth</span>
+                            </div>
+                            <div class="chart-item">
+                                <div class="chart-bar" style="--height: 60%"></div>
+                                <span>Global Reach</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="section section--light">
+        <section id="projects" class="section alt">
             <div class="container">
-                <div class="projects__header">
-                    <h2 class="section__title">Our Solutions</h2>
-                    <p class="section__text">Often seemingly simple solutions prove to be the most difficult to implement. In exactly this combination, you win with us.</p>
+                <div class="section-header">
+                    <h2 class="reveal-up">Our Projects</h2>
+                    <p class="section-subtitle reveal-up delay-1">
+                        Humanitarian technology solutions making a difference
+                    </p>
                 </div>
-                <div class="projects__showcase">
-                    <div class="project__card">
-                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/40943f0db7bcc0ad13ed5600d8d867bb6f1c7a24.png" alt="Community Engineering Projects" class="project__image">
-                        <div class="project__content">
-                            <h3>Community Electronics</h3>
-                            <p>Hands-on electronics projects for local communities</p>
+                <div class="projects-grid">
+                    <div class="project-card reveal-fade" style="--delay: 0s">
+                        <div class="project-image">
+                            <div class="project-category">Education</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Digital Learning Platform</h3>
+                            <p>Developing accessible online education tools for underserved communities.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Web Development</span>
+                                <span class="tech-tag">Mobile Apps</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project__card">
-                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/5e9f9cf3455dca08ace5b87656c7f5ecef479a1c.png" alt="Technical Demonstrations" class="project__image">
-                        <div class="project__content">
-                            <h3>Technical Education</h3>
-                            <p>Demonstrations and workshops for skill development</p>
+                    <div class="project-card reveal-fade" style="--delay: 0.1s">
+                        <div class="project-image">
+                            <div class="project-category">Healthcare</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Remote Health Monitoring</h3>
+                            <p>IoT-based health monitoring system for rural healthcare access.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">Data Analytics</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project__card">
-                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/fe4eb18c79f4b690126a012bda78aa97e494d924.png" alt="Student Collaboration" class="project__image">
-                        <div class="project__content">
-                            <h3>Student Innovation</h3>
-                            <p>Collaborative engineering solutions by students</p>
+                    <div class="project-card reveal-fade" style="--delay: 0.2s">
+                        <div class="project-image">
+                            <div class="project-category">Environment</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Smart Water Management</h3>
+                            <p>AI-powered system for efficient water distribution and conservation.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">AI/ML</span>
+                                <span class="tech-tag">Sensors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-up">Upcoming Events</h2>
+                    <p class="section-subtitle reveal-up delay-1">
+                        Join us in our humanitarian technology initiatives
+                    </p>
+                </div>
+                <div class="events-timeline">
+                    <div class="event-item reveal-fade" style="--delay: 0s">
+                        <div class="event-date">
+                            <span class="day">28</span>
+                            <span class="month">Apr</span>
+                        </div>
+                        <div class="event-content">
+                            <h3>IEEE SIGHT Day 2025</h3>
+                            <p>Global celebration fostering community spirit and raising awareness of IEEE SIGHT[6].</p>
+                            <span class="event-type">Global Event</span>
+                        </div>
+                    </div>
+                    <div class="event-item reveal-fade" style="--delay: 0.1s">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-content">
+                            <h3>Tech4Good Workshop</h3>
+                            <p>Hands-on workshop on developing sustainable technology solutions.</p>
+                            <span class="event-type">Workshop</span>
+                        </div>
+                    </div>
+                    <div class="event-item reveal-fade" style="--delay: 0.2s">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">Jun</span>
+                        </div>
+                        <div class="event-content">
+                            <h3>Community Outreach Program</h3>
+                            <p>Visiting local communities to identify humanitarian technology needs.</p>
+                            <span class="event-type">Outreach</span>
                         </div>
                     </div>
                 </div>
@@ -164,89 +236,105 @@
         </section>
 
         <!-- Team Section -->
-        <section id="team" class="section">
+        <section id="team" class="section alt">
             <div class="container">
-                <div class="team__content">
-                    <div class="team__text">
-                        <h2 class="section__title">A team that counts.</h2>
-                        <p class="section__subtitle">Simplicity that works.</p>
-                        <p class="section__description">Get to know our collaborative team. Each member stands for making results simpler for communities to use, so you can make decisions with confidence. Always under the promise: To make it simple, but significant.</p>
-                    </div>
-                    <div class="team__image">
-                        <img src="https://pplx-res.cloudinary.com/image/upload/v1754991217/pplx_project_search_images/0a18007f69d7e89d0f4ce531fefbe461b49a2a12.png" alt="Collaborative Team" class="team__img">
-                    </div>
+                <div class="section-header">
+                    <h2 class="reveal-up">Our Team</h2>
+                    <p class="section-subtitle reveal-up delay-1">
+                        Dedicated volunteers making technology accessible
+                    </p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Values Section -->
-        <section id="values" class="section section--accent">
-            <div class="container">
-                <div class="values__header">
-                    <h2 class="section__title">A new principle</h2>
-                    <p class="section__text">Trust the voices of the communities we serve. They tell you most clearly how we simplify complexity for sustainable development.</p>
-                </div>
-                <div class="values__grid">
-                    <div class="value__item">
-                        <h3>Simplicity that works.</h3>
+                <div class="team-grid">
+                    <div class="team-member reveal-fade" style="--delay: 0s">
+                        <div class="member-photo"></div>
+                        <h3>Chapter Chair</h3>
+                        <p class="member-role">IEEE Senior Member</p>
+                        <p class="member-bio">Leading humanitarian technology initiatives with 5+ years of IEEE volunteering experience.</p>
                     </div>
-                    <div class="value__item">
-                        <h3>Discover how we change humanitarian technology for community success.</h3>
+                    <div class="team-member reveal-fade" style="--delay: 0.1s">
+                        <div class="member-photo"></div>
+                        <h3>Vice Chair</h3>
+                        <p class="member-role">IEEE Member</p>
+                        <p class="member-bio">Specializing in community outreach and sustainable development projects.</p>
                     </div>
-                    <div class="value__item">
-                        <h3>Simplicity as guiding principle</h3>
-                    </div>
-                    <div class="value__item">
-                        <h3>Empathy as added value</h3>
-                    </div>
-                    <div class="value__item">
-                        <h3>High standards, low egos</h3>
-                    </div>
-                    <div class="value__item">
-                        <h3>Agility over bureaucracy</h3>
+                    <div class="team-member reveal-fade" style="--delay: 0.2s">
+                        <div class="member-photo"></div>
+                        <h3>Secretary</h3>
+                        <p class="member-role">IEEE Student Member</p>
+                        <p class="member-bio">Coordinating chapter activities and maintaining member engagement.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Join Section -->
-        <section id="join" class="section section--cta">
+        <section id="join" class="section cta-section">
             <div class="container">
-                <div class="join__content">
-                    <h2 class="section__title section__title--light">Simplicity meets excellence: Join our team.</h2>
-                    <p class="section__subtitle section__subtitle--light">IEEE SIGHT – The essence of our promise: Humanitarian technology to the point!</p>
-                    <p class="join__description">Transform with us the often unnecessarily complex world of technology deployment, making it simpler and faster to implement for our communities. Help us develop new standards in humanitarian engineering that can change everything.</p>
-                    <div class="join__actions">
-                        <a href="#contact" class="btn btn--primary btn--lg">Start Your Journey</a>
-                        <a href="#projects" class="btn btn--outline btn--lg">Learn More</a>
+                <div class="cta-content">
+                    <h2 class="reveal-up">Join Our Mission</h2>
+                    <p class="reveal-up delay-1">
+                        Become part of the global IEEE SIGHT community and make technology work for humanity[6].
+                    </p>
+                    <div class="join-options reveal-up delay-2">
+                        <div class="join-option">
+                            <h3>IEEE Members</h3>
+                            <p>Add SIGHT to your IEEE membership for free and join our humanitarian technology community[7].</p>
+                            <a class="btn primary" href="#">Become a SIGHT Member</a>
+                        </div>
+                        <div class="join-option">
+                            <h3>Non-IEEE Members</h3>
+                            <p>Non-IEEE members are welcome to participate in local SIGHT Group activities[6].</p>
+                            <a class="btn secondary" href="#">Join as Volunteer</a>
+                        </div>
                     </div>
-                </div>
-                <div class="join__image">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/v1755097870/pplx_project_search_images/31d3787ded1c5ba563fea6451ff44abfeb3f8c2a.png" alt="IEEE SIGHT Community" class="join__img">
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__info">
-                    <h3>IEEE SIGHT Campus Chapter</h3>
-                    <p>Making humanitarian technology simple, but significant</p>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-mark">
+                            <span class="ieee-text">IEEE</span>
+                            <span class="sight-text">SIGHT</span>
+                        </div>
+                        <span>Chapter Name</span>
+                    </div>
+                    <p>Leveraging technology for sustainable development and humanitarian impact.</p>
                 </div>
-                <div class="footer__links">
-                    <a href="https://sight.ieee.org" target="_blank">IEEE SIGHT Global</a>
-                    <a href="https://ieee.org" target="_blank">IEEE.org</a>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#join">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://sight.ieee.org" target="_blank">IEEE SIGHT Global</a></li>
+                        <li><a href="https://ieeekerala.org" target="_blank">IEEE Kerala Section</a></li>
+                        <li><a href="#" target="_blank">Chapter Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: sight@ieee.org</p>
+                    <p>Location: Your City, State</p>
                 </div>
             </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 IEEE SIGHT Campus Chapter. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> IEEE SIGHT Chapter. All rights reserved.</p>
+                <p>IEEE and IEEE SIGHT are registered trademarks of the Institute of Electrical and Electronics Engineers, Inc.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html>
