@@ -1,92 +1,143 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>IEEE SIGHT Chapter | Special Interest Group on Humanitarian Technology</title>
     <meta name="description" content="IEEE SIGHT chapter leveraging technology for sustainable development and humanitarian impact in local communities." />
+    <meta name="keywords" content="IEEE SIGHT, humanitarian technology, sustainable development, engineering" />
+    <meta name="theme-color" content="#0066cc" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="IEEE SIGHT Chapter | Humanitarian Technology" />
+    <meta property="og:description" content="Leveraging technology for sustainable development and humanitarian impact." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Font Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+        <!-- Loading Screen (simplified) -->
+    <div class="loading-screen" id="loading-screen">
+    <div class="logo-animation">
+        <img src="/assets/logo.png" alt="IEEE SIGHT Logo" class="main-logo-loading" id="main-logo-loading" />
+        <div class="logo-circle-animation">
+        <div class="circle-ring"></div>
+        <div class="circle-ring-2"></div>
+        </div>
+    </div>
+    <div class="loading-background">
+        <div class="loading-particle"></div>
+        <div class="loading-particle"></div>
+        <div class="loading-particle"></div>
+        <div class="loading-particle"></div>
+        <div class="loading-particle"></div>
+    </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+        <span>↑</span>
+    </button>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+
     <a class="skip-link" href="#main">Skip to main content</a>
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <a class="logo" href="#">
-                <div class="logo-mark">
-                    <span class="ieee-text">IEEE</span>
-                    <span class="sight-text">SIGHT</span>
-                </div>
-                <span class="chapter-name">Chapter Name</span>
+    <!-- Enhanced Navbar (Based on Retrallspective Style) -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="branding">
+                <!-- Placeholder logo; replace placeholder-logo.png with your actual logo -->
+                <img src="/assets/logo.png" alt="IEEE SIGHT Logo" class="logo" />
+                <h1 class="logo-seperator"> | </h1>
+                <img src="/assets/IEEElogo.png" alt="IEEE SIGHT Logo" class="logo" />
+                <!-- <span class="site-title">IEEE SIGHT</span> -->
             </a>
-            <nav class="nav" aria-label="Primary">
-                <button class="nav-toggle" aria-expanded="false" aria-controls="navMenu">Menu</button>
-                <ul id="navMenu" class="nav-menu">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a class="cta" href="#join">Join Us</a></li>
-                </ul>
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#execom">Execom</a>
+                <a href="#activities">Activities</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
             </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
     <main id="main">
-        <!-- Hero Section -->
-        <section class="hero">
+        <!-- Hero Section with Moving Text Background -->
+        <section id="home" class="hero">
+            <!-- Moving Text Background -->
+            <div class="text-background" aria-hidden="true">
+                <div class="moving-text">IEEE SIGHT</div>
+                <div class="moving-text">HUMANITARIAN TECHNOLOGY</div>
+                <div class="moving-text">SUSTAINABLE DEVELOPMENT</div>
+                <div class="moving-text">COMMUNITY IMPACT</div>
+                <div class="moving-text">INNOVATION FOR GOOD</div>
+                <div class="moving-text">TECHNOLOGY FOR HUMANITY</div>
+                <div class="moving-text vertical">SDGs</div>
+                <div class="moving-text vertical">SIGHT</div>
+            </div>
+
             <div class="container hero-inner">
                 <div class="hero-content">
                     <h1 class="reveal-up">
                         Technology for
-                        <span class="highlight">Humanitarian Impact</span>
+                        <span class="highlight typing-text" data-text="Humanitarian Impact">Humanitarian Impact</span>
                     </h1>
                     <p class="lead reveal-up delay-1">
-                        A global network of IEEE volunteers partnering with underserved communities to leverage technology for sustainable development[6].
+                        A global network of IEEE volunteers partnering with underserved communities to leverage technology for sustainable development.
                     </p>
+                    
+                    <!-- Live Stats Counter -->
                     <div class="hero-stats reveal-up delay-2">
                         <div class="stat">
-                            <span class="stat-number">6+</span>
+                            <span class="stat-number" data-count="6">0</span>
                             <span class="stat-label">Active Members</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">5+</span>
+                            <span class="stat-number" data-count="5">0</span>
                             <span class="stat-label">Community Projects</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">100+</span>
+                            <span class="stat-number" data-count="100">0</span>
                             <span class="stat-label">Lives Impacted</span>
                         </div>
                     </div>
+                    
                     <div class="hero-ctas reveal-up delay-3">
-                        <a class="btn primary" href="#projects">View Projects</a>
+                        <a class="btn primary pulse" href="#activities">View Activities</a>
                         <a class="btn secondary" href="#about">Learn More</a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="tech-grid" aria-hidden="true">
-                        <div class="tech-card">
-                            <div class="icon">🌍</div>
-                            <span>Global Impact</span>
-                        </div>
-                        <div class="tech-card">
-                            <div class="icon">💡</div>
-                            <span>Innovation</span>
-                        </div>
-                        <div class="tech-card">
-                            <div class="icon">🤝</div>
-                            <span>Community</span>
-                        </div>
-                        <div class="tech-card">
-                            <div class="icon">⚡</div>
-                            <span>Technology</span>
-                        </div>
-                    </div>
-                </div>
             </div>
+
+            <!-- Interactive SVG Graphic -->
+            <svg id="interactive-graphic" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet">
+                <g class="arc-group">
+                    <circle class="arc" cx="300" cy="200" r="150" />
+                    <circle class="arc" cx="300" cy="200" r="120" />
+                    <circle class="arc" cx="300" cy="200" r="90"  />
+                </g>
+                <g class="node-group">
+                    <circle class="node" cx="440" cy="200" r="8" />
+                    <circle class="node" cx="160" cy="200" r="8" />
+                    <circle class="node" cx="300" cy="60"  r="8" />
+                    <circle class="node" cx="300" cy="340" r="8" />
+                </g>
+            </svg>
         </section>
 
         <!-- About Section -->
@@ -95,39 +146,100 @@
                 <div class="section-header">
                     <h2 class="reveal-up">About IEEE SIGHT</h2>
                     <p class="section-subtitle reveal-up delay-1">
-                        The Special Interest Group on Humanitarian Technology connects IEEE volunteers globally[6]
+                        The Special Interest Group on Humanitarian Technology connects IEEE volunteers globally
                     </p>
                 </div>
-                <div class="about-grid">
-                    <div class="about-content reveal-up delay-2">
-                        <h3>Our Mission</h3>
-                        <p>IEEE SIGHT groups consist of at least six IEEE members who come together to learn about sustainable development, foster relationships with their local communities, and leverage technology to address key issues[6].</p>
+                
+                <!-- Tabbed Content -->
+                <div class="tabs-container reveal-up delay-2">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="local">Local Chapter</button>
+                        <button class="tab-btn" data-tab="global">Global Society</button>
+                        <button class="tab-btn" data-tab="objectives">Our Objectives</button>
+                    </div>
+                    
+                    <div class="tabs-content">
+                        <div class="tab-pane active" id="local">
+                            <div class="about-grid">
+                                <div class="about-content">
+                                    <h3>About Our IEEE SIGHT Chapter</h3>
+                                    <p>IEEE SIGHT groups consist of at least six IEEE members who come together to learn about sustainable development, foster relationships with their local communities, and leverage technology to address key issues.</p>
+                                    
+                                    <div class="highlight-box">
+                                        <h4>Our Focus Areas</h4>
+                                        <ul>
+                                            <li>Digital Education Platforms</li>
+                                            <li>Healthcare Technology Access</li>
+                                            <li>Environmental Monitoring Systems</li>
+                                            <li>Community Development Tools</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="about-visual">
+                                    <div class="impact-metrics">
+                                        <div class="metric-card">
+                                            <div class="metric-icon">📊</div>
+                                            <div class="metric-data">
+                                                <span class="metric-number">85%</span>
+                                                <span class="metric-label">Community Engagement</span>
+                                            </div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-icon">🔧</div>
+                                            <div class="metric-data">
+                                                <span class="metric-number">70%</span>
+                                                <span class="metric-label">Tech Solutions</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <h3>Objectives</h3>
-                        <ul class="objectives-list">
-                            <li>Promote humanitarian technology activities and sustainable development[12]</li>
-                            <li>Increase awareness of technology's potential to improve living standards[12]</li>
-                            <li>Engage with NGOs, civil society organizations, and corporates[12]</li>
-                            <li>Work with global engineering community bodies[12]</li>
-                        </ul>
-                    </div>
-                    <div class="about-visual reveal-fade">
-                        <div class="impact-chart">
-                            <div class="chart-item">
-                                <div class="chart-bar" style="--height: 85%"></div>
-                                <span>Community Engagement</span>
+                        <div class="tab-pane" id="global">
+                            <div class="about-content">
+                                <h3>About IEEE SIGHT Globally</h3>
+                                <p>IEEE SIGHT is a global network that connects IEEE volunteers interested in applying technical skills to humanitarian challenges.</p>
+                                
+                                <div class="global-stats">
+                                    <div class="stat-item">
+                                        <span class="number">200+</span>
+                                        <span class="label">Global Chapters</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="number">10,000+</span>
+                                        <span class="label">Active Members</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="number">50+</span>
+                                        <span class="label">Countries</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="chart-item">
-                                <div class="chart-bar" style="--height: 70%"></div>
-                                <span>Tech Solutions</span>
-                            </div>
-                            <div class="chart-item">
-                                <div class="chart-bar" style="--height: 95%"></div>
-                                <span>Member Growth</span>
-                            </div>
-                            <div class="chart-item">
-                                <div class="chart-bar" style="--height: 60%"></div>
-                                <span>Global Reach</span>
+                        </div>
+                        
+                        <div class="tab-pane" id="objectives">
+                            <div class="objectives-grid">
+                                <div class="objective-card">
+                                    <div class="objective-icon">🎯</div>
+                                    <h4>Promote Humanitarian Technology</h4>
+                                    <p>Advance humanitarian technology activities and sustainable development initiatives</p>
+                                </div>
+                                <div class="objective-card">
+                                    <div class="objective-icon">📈</div>
+                                    <h4>Increase Awareness</h4>
+                                    <p>Raise awareness of technology's potential to improve living standards globally</p>
+                                </div>
+                                <div class="objective-card">
+                                    <div class="objective-icon">🤝</div>
+                                    <h4>Community Engagement</h4>
+                                    <p>Partner with NGOs, civil society organizations, and corporate entities</p>
+                                </div>
+                                <div class="objective-card">
+                                    <div class="objective-icon">🌐</div>
+                                    <h4>Global Collaboration</h4>
+                                    <p>Work with international engineering community bodies and institutions</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -135,52 +247,70 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="section alt">
+        <!-- Execom Members Section -->
+        <section id="execom" class="section alt">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="reveal-up">Our Projects</h2>
+                    <h2 class="reveal-up">Executive Committee</h2>
                     <p class="section-subtitle reveal-up delay-1">
-                        Humanitarian technology solutions making a difference
+                        Dedicated leaders driving our humanitarian technology mission
                     </p>
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card reveal-fade" style="--delay: 0s">
-                        <div class="project-image">
-                            <div class="project-category">Education</div>
+                
+                <div class="members-grid">
+                    <div class="member-card reveal-fade interactive-card" data-member="chair">
+                        <div class="member-photo">
+                            <img src="placeholder-chair.jpg" alt="Chapter Chair" loading="lazy" />
+                            <div class="member-overlay">
+                                <button class="contact-btn" data-email="chair@ieee-sight.org">📧</button>
+                                <button class="linkedin-btn" data-linkedin="#">💼</button>
+                            </div>
                         </div>
-                        <div class="project-content">
-                            <h3>Digital Learning Platform</h3>
-                            <p>Developing accessible online education tools for underserved communities.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Web Development</span>
-                                <span class="tech-tag">Mobile Apps</span>
+                        <div class="member-info">
+                            <h3>Dr. John Doe</h3>
+                            <p class="position">Chapter Chair</p>
+                            <p class="credentials">IEEE Senior Member</p>
+                            <p class="contact">chair@ieee-sight.org</p>
+                            <div class="member-bio">
+                                <p>Leading humanitarian technology initiatives with 8+ years of experience.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="project-card reveal-fade" style="--delay: 0.1s">
-                        <div class="project-image">
-                            <div class="project-category">Healthcare</div>
+                    
+                    <div class="member-card reveal-fade interactive-card" data-member="vice-chair">
+                        <div class="member-photo">
+                            <img src="placeholder-vice-chair.jpg" alt="Vice Chair" loading="lazy" />
+                            <div class="member-overlay">
+                                <button class="contact-btn" data-email="vicechair@ieee-sight.org">📧</button>
+                                <button class="linkedin-btn" data-linkedin="#">💼</button>
+                            </div>
                         </div>
-                        <div class="project-content">
-                            <h3>Remote Health Monitoring</h3>
-                            <p>IoT-based health monitoring system for rural healthcare access.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">IoT</span>
-                                <span class="tech-tag">Data Analytics</span>
+                        <div class="member-info">
+                            <h3>Jane Smith</h3>
+                            <p class="position">Vice Chair</p>
+                            <p class="credentials">IEEE Member</p>
+                            <p class="contact">vicechair@ieee-sight.org</p>
+                            <div class="member-bio">
+                                <p>Specializing in community outreach and sustainable development projects.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="project-card reveal-fade" style="--delay: 0.2s">
-                        <div class="project-image">
-                            <div class="project-category">Environment</div>
+                    
+                    <div class="member-card reveal-fade interactive-card" data-member="secretary">
+                        <div class="member-photo">
+                            <img src="placeholder-secretary.jpg" alt="Secretary" loading="lazy" />
+                            <div class="member-overlay">
+                                <button class="contact-btn" data-email="secretary@ieee-sight.org">📧</button>
+                                <button class="linkedin-btn" data-linkedin="#">💼</button>
+                            </div>
                         </div>
-                        <div class="project-content">
-                            <h3>Smart Water Management</h3>
-                            <p>AI-powered system for efficient water distribution and conservation.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">AI/ML</span>
-                                <span class="tech-tag">Sensors</span>
+                        <div class="member-info">
+                            <h3>Mike Johnson</h3>
+                            <p class="position">Secretary</p>
+                            <p class="credentials">IEEE Student Member</p>
+                            <p class="contact">secretary@ieee-sight.org</p>
+                            <div class="member-bio">
+                                <p>Coordinating chapter activities and maintaining member engagement.</p>
                             </div>
                         </div>
                     </div>
@@ -188,103 +318,179 @@
             </div>
         </section>
 
-        <!-- Events Section -->
-        <section id="events" class="section">
+        <!-- Activities Section -->
+        <section id="activities" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="reveal-up">Upcoming Events</h2>
+                    <h2 class="reveal-up">Activities & Events</h2>
                     <p class="section-subtitle reveal-up delay-1">
-                        Join us in our humanitarian technology initiatives
+                        Our humanitarian technology initiatives and community programs
                     </p>
                 </div>
-                <div class="events-timeline">
-                    <div class="event-item reveal-fade" style="--delay: 0s">
-                        <div class="event-date">
-                            <span class="day">28</span>
-                            <span class="month">Apr</span>
+                
+                <!-- Activity Filters -->
+                <div class="activity-filters reveal-up delay-2">
+                    <button class="filter-btn active" data-filter="all">All Activities</button>
+                    <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                    <button class="filter-btn" data-filter="past">Past Events</button>
+                    <button class="filter-btn" data-filter="workshops">Workshops</button>
+                </div>
+                
+                <div class="activities-grid">
+                    <div class="activity-card reveal-fade interactive-card" data-category="upcoming workshops">
+                        <div class="activity-image">
+                            <img src="activity-ai-workshop.jpg" alt="AI Workshop" loading="lazy" />
+                            <div class="activity-overlay">
+                                <button class="expand-btn">View Details</button>
+                            </div>
+                            <div class="activity-badge upcoming">Upcoming</div>
                         </div>
-                        <div class="event-content">
-                            <h3>IEEE SIGHT Day 2025</h3>
-                            <p>Global celebration fostering community spirit and raising awareness of IEEE SIGHT[6].</p>
-                            <span class="event-type">Global Event</span>
+                        <div class="activity-content">
+                            <div class="activity-meta">
+                                <span class="activity-date">April 28, 2025</span>
+                                <span class="activity-type">Workshop</span>
+                            </div>
+                            <h3>AI for Social Good Workshop</h3>
+                            <p>Hands-on workshop covering artificial intelligence applications in humanitarian technology.</p>
+                            <div class="activity-details">
+                                <div class="activity-stats">
+                                    <span class="stat">👥 50+ Expected</span>
+                                    <span class="stat">⏱️ 6 Hours</span>
+                                    <span class="stat">📍 Virtual</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="event-item reveal-fade" style="--delay: 0.1s">
-                        <div class="event-date">
-                            <span class="day">15</span>
-                            <span class="month">May</span>
+                    
+                    <div class="activity-card reveal-fade interactive-card" data-category="past">
+                        <div class="activity-image">
+                            <img src="activity-coding-comp.jpg" alt="Coding Competition" loading="lazy" />
+                            <div class="activity-overlay">
+                                <button class="expand-btn">View Results</button>
+                            </div>
+                            <div class="activity-badge past">Completed</div>
                         </div>
-                        <div class="event-content">
-                            <h3>Tech4Good Workshop</h3>
-                            <p>Hands-on workshop on developing sustainable technology solutions.</p>
-                            <span class="event-type">Workshop</span>
-                        </div>
-                    </div>
-                    <div class="event-item reveal-fade" style="--delay: 0.2s">
-                        <div class="event-date">
-                            <span class="day">22</span>
-                            <span class="month">Jun</span>
-                        </div>
-                        <div class="event-content">
-                            <h3>Community Outreach Program</h3>
-                            <p>Visiting local communities to identify humanitarian technology needs.</p>
-                            <span class="event-type">Outreach</span>
+                        <div class="activity-content">
+                            <div class="activity-meta">
+                                <span class="activity-date">November 15, 2024</span>
+                                <span class="activity-type">Competition</span>
+                            </div>
+                            <h3>Humanitarian Code Challenge</h3>
+                            <p>48-hour coding competition focused on developing solutions for humanitarian challenges.</p>
+                            <div class="activity-details">
+                                <div class="activity-stats">
+                                    <span class="stat">👥 120 Participants</span>
+                                    <span class="stat">⏱️ 48 Hours</span>
+                                    <span class="stat">🏆 15 Teams</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Team Section -->
-        <section id="team" class="section alt">
+        <!-- Achievements Section -->
+        <section id="achievements" class="section alt">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="reveal-up">Our Team</h2>
+                    <h2 class="reveal-up">Our Achievements</h2>
                     <p class="section-subtitle reveal-up delay-1">
-                        Dedicated volunteers making technology accessible
+                        Recognition and impact of our humanitarian technology efforts
                     </p>
                 </div>
-                <div class="team-grid">
-                    <div class="team-member reveal-fade" style="--delay: 0s">
-                        <div class="member-photo"></div>
-                        <h3>Chapter Chair</h3>
-                        <p class="member-role">IEEE Senior Member</p>
-                        <p class="member-bio">Leading humanitarian technology initiatives with 5+ years of IEEE volunteering experience.</p>
-                    </div>
-                    <div class="team-member reveal-fade" style="--delay: 0.1s">
-                        <div class="member-photo"></div>
-                        <h3>Vice Chair</h3>
-                        <p class="member-role">IEEE Member</p>
-                        <p class="member-bio">Specializing in community outreach and sustainable development projects.</p>
-                    </div>
-                    <div class="team-member reveal-fade" style="--delay: 0.2s">
-                        <div class="member-photo"></div>
-                        <h3>Secretary</h3>
-                        <p class="member-role">IEEE Student Member</p>
-                        <p class="member-bio">Coordinating chapter activities and maintaining member engagement.</p>
+                
+                <div class="achievements-timeline">
+                    <div class="timeline-item reveal-fade" data-year="2024">
+                        <div class="timeline-marker">
+                            <span class="year">2024</span>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-image">
+                                <img src="award-best-chapter.jpg" alt="Best Chapter Award" loading="lazy" />
+                                <div class="achievement-badge">🏆 Award</div>
+                            </div>
+                            <div class="achievement-content">
+                                <h3>IEEE SIGHT Outstanding Chapter Award</h3>
+                                <p>Recognized globally as the outstanding IEEE SIGHT chapter for exceptional community engagement and humanitarian impact.</p>
+                                <div class="achievement-stats">
+                                    <span class="stat">📊 95% Impact Score</span>
+                                    <span class="stat">🌍 3 Countries</span>
+                                    <span class="stat">👥 500+ Lives</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Join Section -->
-        <section id="join" class="section cta-section">
+        <!-- Contact Section -->
+        <section id="contact" class="section">
             <div class="container">
-                <div class="cta-content">
-                    <h2 class="reveal-up">Join Our Mission</h2>
-                    <p class="reveal-up delay-1">
-                        Become part of the global IEEE SIGHT community and make technology work for humanity[6].
+                <div class="section-header">
+                    <h2 class="reveal-up">Get In Touch</h2>
+                    <p class="section-subtitle reveal-up delay-1">
+                        Connect with us to join our humanitarian technology mission
                     </p>
-                    <div class="join-options reveal-up delay-2">
-                        <div class="join-option">
-                            <h3>IEEE Members</h3>
-                            <p>Add SIGHT to your IEEE membership for free and join our humanitarian technology community[7].</p>
-                            <a class="btn primary" href="#">Become a SIGHT Member</a>
-                        </div>
-                        <div class="join-option">
-                            <h3>Non-IEEE Members</h3>
-                            <p>Non-IEEE members are welcome to participate in local SIGHT Group activities[6].</p>
-                            <a class="btn secondary" href="#">Join as Volunteer</a>
+                </div>
+                
+                <div class="contact-content reveal-up delay-2">
+                    <div class="contact-form-section">
+                        <h3>Send us a Message</h3>
+                        <form class="contact-form" id="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required aria-describedby="name-error">
+                                <span class="error-message" id="name-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required aria-describedby="email-error">
+                                <span class="error-message" id="email-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" required aria-describedby="subject-error">
+                                    <option value="">Select a subject</option>
+                                    <option value="membership">Membership Inquiry</option>
+                                    <option value="collaboration">Collaboration Proposal</option>
+                                    <option value="volunteer">Volunteer Opportunity</option>
+                                    <option value="general">General Question</option>
+                                </select>
+                                <span class="error-message" id="subject-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
+                                <span class="error-message" id="message-error"></span>
+                            </div>
+                            
+                            <button type="submit" class="btn primary submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loading">Sending...</span>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info-section">
+                        <div class="contact-cards">
+                            <div class="contact-card">
+                                <div class="contact-icon">📧</div>
+                                <h4>Email Us</h4>
+                                <p>sight@ieee-sbcek.org</p>
+                                <a href="mailto:sight@ieee-sbcek.org" class="contact-link">Send Email</a>
+                            </div>
+                            
+                            <div class="contact-card">
+                                <div class="contact-icon">📱</div>
+                                <h4>Call Us</h4>
+                                <p>+91 98765 43210</p>
+                                <a href="tel:+919876543210" class="contact-link">Call Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,45 +498,36 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-section brand-section">
                     <div class="footer-logo">
                         <div class="logo-mark">
                             <span class="ieee-text">IEEE</span>
                             <span class="sight-text">SIGHT</span>
                         </div>
-                        <span>Chapter Name</span>
+                        <span>SBCEK Chapter</span>
                     </div>
                     <p>Leveraging technology for sustainable development and humanitarian impact.</p>
                 </div>
+                
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#join">Join Us</a></li>
+                        <li><a href="#about">About SIGHT</a></li>
+                        <li><a href="#execom">Our Team</a></li>
+                        <li><a href="#activities">Activities</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://sight.ieee.org" target="_blank">IEEE SIGHT Global</a></li>
-                        <li><a href="https://ieeekerala.org" target="_blank">IEEE Kerala Section</a></li>
-                        <li><a href="#" target="_blank">Chapter Guidelines</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: sight@ieee.org</p>
-                    <p>Location: Your City, State</p>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> IEEE SIGHT Chapter. All rights reserved.</p>
-                <p>IEEE and IEEE SIGHT are registered trademarks of the Institute of Electrical and Electronics Engineers, Inc.</p>
+                <div class="footer-legal">
+                    <p>&copy; <span id="year"></span> IEEE SIGHT SBCEK Chapter. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
