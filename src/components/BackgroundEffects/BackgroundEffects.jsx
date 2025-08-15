@@ -5,7 +5,7 @@ const BackgroundEffects = () => {
   const canvasRef = useRef();
   const shapesRef = useRef([]);
 
-  // IEEE brand colors for particles and effects
+  // IEEE brand colors
   const ieeeColors = {
     blue: '#00629B',
     darkBlue: '#004976',
@@ -24,7 +24,7 @@ const BackgroundEffects = () => {
     let animationFrame;
 
     const createParticles = () => {
-      const count = window.innerWidth < 768 ? 200 : 500;
+      const count = window.innerWidth < 768 ? 200 : 400;
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -32,7 +32,7 @@ const BackgroundEffects = () => {
         alpha: Math.random() * 0.4 + 0.1,
         dx: (Math.random() - 0.5) * 0.3,
         dy: (Math.random() - 0.5) * 0.3,
-        color: Math.random() > 0.7 ? ieeeColors.orange : '#ffffff'
+        color: Math.random() > 0.8 ? ieeeColors.orange : '#ffffff'
       }));
     };
 
@@ -72,7 +72,7 @@ const BackgroundEffects = () => {
     };
   }, []);
 
-  // Moving text background (from your original)
+  // Moving text background
   const movingTexts = [
     'IEEE SIGHT',
     'HUMANITARIAN TECHNOLOGY',
@@ -116,7 +116,7 @@ const BackgroundEffects = () => {
       const moveY = (clientY - centerY) / centerY;
       
       shapesRef.current.forEach((shape, index) => {
-        if (shape) {
+        if (shape && shapes[index]) {
           const depth = shapes[index].depth;
           const translateX = moveX * depth * 30;
           const translateY = moveY * depth * 30;
@@ -133,7 +133,7 @@ const BackgroundEffects = () => {
     <div className="background-effects">
       <canvas ref={canvasRef} className="particle-canvas" />
       
-      {/* Moving text background from your original design */}
+      {/* Moving text background */}
       <div className="text-background">
         {movingTexts.slice(0, window.innerWidth <= 768 ? 4 : 8).map((text, index) => (
           <div 

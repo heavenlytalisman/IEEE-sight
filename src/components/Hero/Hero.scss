@@ -26,18 +26,17 @@
       font-weight: 700;
       margin-bottom: 1.5rem;
       line-height: 1.2;
-    }
 
-    .highlight {
-      background: linear-gradient(90deg, #E87722, #ffcc00);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+      .highlight {
+        background: linear-gradient(90deg, #E87722, #ffcc00);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-    .typing-text::after {
-      content: '|';
-      animation: blink 1s infinite;
+      .cursor {
+        animation: blink 1s infinite;
+      }
     }
 
     .lead {

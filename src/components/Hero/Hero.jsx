@@ -3,7 +3,8 @@ import './Hero.scss';
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
-  const fullText = "Technology for\nHumanitarian Impact";
+  const fullText = "Technology for Humanitarian Impact";
+  const [showCursor, setShowCursor] = useState(true);
   
   useEffect(() => {
     let index = 0;
@@ -13,11 +14,23 @@ const Hero = () => {
         index++;
       } else {
         clearInterval(timer);
+        setShowCursor(false);
       }
     }, 100);
 
     return () => clearInterval(timer);
   }, []);
+
+  // Cursor blinking effect
+  useEffect(() => {
+    if (!showCursor) return;
+    
+    const cursorTimer = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+
+    return () => clearInterval(cursorTimer);
+  }, [showCursor]);
 
   return (
     <section id="home" className="hero">
@@ -25,13 +38,17 @@ const Hero = () => {
         <div className="hero-inner">
           <div className="hero-content reveal-up">
             <h1 className="typing-text">
-              {typedText.split('\n').map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  {i === 0 && <br />}
-                  {i === 1 && <span className="highlight">Impact</span>}
-                </React.Fragment>
-              ))}
+              {typedText.includes('Impact') ? (
+                <>
+                  Technology for<br />
+                  Humanitarian <span className="highlight">Impact</span>
+                </>
+              ) : (
+                <>
+                  {typedText}
+                  {showCursor && <span className="cursor">|</span>}
+                </>
+              )}
             </h1>
             
             <p className="lead reveal-up delay-1">
@@ -65,7 +82,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Interactive SVG from your original design */}
+      {/* Interactive SVG */}
       <svg id="interactive-graphic" viewBox="0 0 400 300" className="interactive-svg">
         <path className="arc" d="M 50 150 A 100 100 0 0 1 250 150" stroke="#00629B" />
         <path className="arc" d="M 100 100 A 50 50 0 0 1 200 100" stroke="#0099CC" />
