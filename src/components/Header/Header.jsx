@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Header.scss';
 
-// Import your logo (adjust path as needed)
-import ieeelogo from '../../assets/images/IEEElogo.png';
+// Import your logos
+import ieeeLogo from '../../assets/images/IEEElogo.png';
+import sightLogo from '../../assets/images/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [logoError, setLogoError] = useState(false);
+  const [logoErrors, setLogoErrors] = useState({ ieee: false, sight: false });
 
   const navItems = [
     { href: '#home', label: 'Home', id: 'home' },
@@ -19,17 +20,24 @@ const Header = () => {
     { href: '#contact', label: 'Contact', id: 'contact' }
   ];
 
-  // Optimized scroll tracking with throttling
+  // Enhanced scroll tracking
   useEffect(() => {
     let ticking = false;
     
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          setIsScrolled(scrollY > 50);
+          const homeSection = document.getElementById('home');
+          
+          if (homeSection) {
+            const heroHeight = homeSection.offsetHeight;
+            const transitionPoint = heroHeight * 0.8;
+            setIsScrolled(window.scrollY > transitionPoint);
+          } else {
+            setIsScrolled(window.scrollY > 300);
+          }
 
-          // Find active section
+          // Active section detection
           const sections = navItems.map(item => ({
             id: item.id,
             element: document.getElementById(item.id)
@@ -60,7 +68,7 @@ const Header = () => {
   const handleNavClick = (href, sectionId) => {
     const element = document.querySelector(href);
     if (element) {
-      const headerOffset = 80;
+      const headerOffset = 70;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -74,45 +82,58 @@ const Header = () => {
     }
   };
 
-  // Debug logo loading
-  const handleLogoLoad = () => {
-    console.log('✅ IEEE logo loaded successfully');
-    setLogoError(false);
+  const handleLogoError = (logoType) => {
+    setLogoErrors(prev => ({ ...prev, [logoType]: true }));
   };
 
-  const handleLogoError = () => {
-    console.error('❌ IEEE logo failed to load');
-    setLogoError(true);
+  const handleLogoLoad = (logoType) => {
+    setLogoErrors(prev => ({ ...prev, [logoType]: false }));
   };
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-inner">
-        <a 
-          href="#home" 
+        <div 
           className="branding" 
-          onClick={(e) => { 
-            e.preventDefault(); 
-            handleNavClick('#home', 'home'); 
-          }}
+          onClick={() => handleNavClick('#home', 'home')}
         >
-          <div className="logo-placeholder">
-            {!logoError ? (
-              <img 
-                src={ieeelogo} 
-                alt="IEEE Logo" 
-                className="logo ieee-master-logo"
-                onLoad={handleLogoLoad}
-                onError={handleLogoError}
-              />
-            ) : (
-              <div className="logo-fallback">IEEE</div>
-            )}
+          <div className="logos-container">
+            {/* IEEE Logo */}
+            <div className="logo-wrapper">
+              {!logoErrors.ieee ? (
+                <img 
+                  src={ieeeLogo} 
+                  alt="IEEE Logo" 
+                  className="logo ieee-logo"
+                  onLoad={() => handleLogoLoad('ieee')}
+                  onError={() => handleLogoError('ieee')}
+                />
+              ) : (
+                <div className="logo-fallback ieee-fallback">IEEE</div>
+              )}
+            </div>
+
+            {/* Minimal Logo Separator */}
+            <div className="logo-separator" aria-hidden="true" />
+
+            {/* SIGHT Logo */}
+            <div className="logo-wrapper">
+              {!logoErrors.sight ? (
+                <img 
+                  src={sightLogo} 
+                  alt="SIGHT Logo" 
+                  className="logo sight-logo"
+                  onLoad={() => handleLogoLoad('sight')}
+                  onError={() => handleLogoError('sight')}
+                />
+              ) : (
+                <div className="logo-fallback sight-fallback">SIGHT</div>
+              )}
+            </div>
           </div>
-          <span className="logo-seperator">|</span>
-          <span className="site-title">SIGHT</span>
-        </a>
+        </div>
         
+        {/* Navigation Links */}
         <div className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
           {navItems.map((item) => (
             <a
@@ -129,6 +150,7 @@ const Header = () => {
           ))}
         </div>
 
+        {/* Mobile Menu Button */}
         <button 
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -13,10 +13,8 @@ import './App.scss';
 
 function App() {
   useEffect(() => {
-    // Force enable scrolling
     document.body.style.overflow = '';
     
-    // Initialize animation observers
     const initializeAnimations = () => {
       const observerOptions = {
         threshold: 0.1,
