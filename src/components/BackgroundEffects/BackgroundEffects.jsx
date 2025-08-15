@@ -1,38 +1,54 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './BackgroundEffects.scss';
 
 const BackgroundEffects = () => {
   const canvasRef = useRef();
   const shapesRef = useRef([]);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isReduced, setIsReduced] = useState(false);
+
+  // Check for reduced motion preference and mobile
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const isMobile = window.innerWidth < 768;
+    setIsReduced(mediaQuery.matches || isMobile);
+
+    const handleChange = () => setIsReduced(mediaQuery.matches || window.innerWidth < 768);
+    mediaQuery.addEventListener('change', handleChange);
+    window.addEventListener('resize', handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      window.removeEventListener('resize', handleChange);
+    };
+  }, []);
 
   // IEEE brand colors
   const ieeeColors = {
     blue: '#00629B',
-    darkBlue: '#004976',
-    lightBlue: '#0099CC',
-    green: '#00843D',
     orange: '#E87722'
   };
 
-  // Particle system
+  // Simplified particle system for better performance
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || isReduced) return;
     
     const ctx = canvas.getContext('2d');
     let particles = [];
     let animationFrame;
 
     const createParticles = () => {
-      const count = window.innerWidth < 768 ? 200 : 400;
+      // Reduced particle count for performance
+      const count = window.innerWidth < 768 ? 15 : 25;
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 0.5,
+        radius: Math.random() * 2 + 1,
         alpha: Math.random() * 0.4 + 0.1,
         dx: (Math.random() - 0.5) * 0.3,
         dy: (Math.random() - 0.5) * 0.3,
-        color: Math.random() > 0.8 ? ieeeColors.orange : '#ffffff'
+        color: Math.random() > 0.5 ? ieeeColors.orange : '#ffffff'
       }));
     };
 
@@ -53,9 +69,9 @@ const BackgroundEffects = () => {
         if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
         
         ctx.globalAlpha = particle.alpha;
+        ctx.fillStyle = particle.color;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
         ctx.fill();
       });
       
@@ -70,78 +86,85 @@ const BackgroundEffects = () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrame);
     };
-  }, []);
+  }, [isReduced]);
 
-  // Moving text background
+  // Simplified mouse tracking (throttled)
+  useEffect(() => {
+    if (isReduced) return;
+
+    let ticking = false;
+    const handleMouseMove = (e) => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setMousePos({ x: e.clientX, y: e.clientY });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [isReduced]);
+
+  // Simplified moving text (reduced count)
   const movingTexts = [
     'IEEE SIGHT',
-    'HUMANITARIAN TECHNOLOGY',
-    'SUSTAINABLE DEVELOPMENT',
+    'HUMANITARIAN TECH',
     'COMMUNITY IMPACT',
-    'INNOVATION FOR GOOD',
-    'TECHNOLOGY FOR HUMANITY',
-    'GLOBAL NETWORK',
-    'ENGINEERING SOLUTIONS'
+    'TECHNOLOGY FOR GOOD'
   ];
 
-  // Parallax shapes
-  const shapes = [
-    { 
-      svg: `<svg width="200" height="200"><circle cx="100" cy="100" r="80" fill="rgba(0, 98, 155, 0.1)"/></svg>`,
+  // Simplified geometric shapes (only 2 for performance)
+  const geometricShapes = [
+    {
+      type: 'circle',
+      svg: `
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="60" fill="none" stroke="rgba(0,98,155,0.1)" stroke-width="2"/>
+          <circle cx="75" cy="75" r="30" fill="none" stroke="rgba(232,119,34,0.2)" stroke-width="1"/>
+          <circle cx="75" cy="75" r="5" fill="rgba(0,98,155,0.6)"/>
+        </svg>
+      `,
       style: { top: '20%', left: '10%' },
-      depth: 0.8
+      depth: 0.5
     },
-    { 
-      svg: `<svg width="150" height="150"><rect width="150" height="150" rx="75" fill="rgba(232, 119, 34, 0.08)"/></svg>`,
-      style: { top: '60%', right: '15%' },
-      depth: 0.6
-    },
-    { 
-      svg: `<svg width="120" height="120"><polygon points="60,10 110,90 10,90" fill="rgba(0, 132, 61, 0.1)"/></svg>`,
-      style: { bottom: '30%', left: '70%' },
-      depth: 0.4
+    {
+      type: 'hexagon',
+      svg: `
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <polygon points="60,10 90,30 90,70 60,90 30,70 30,30" 
+                   fill="none" stroke="rgba(0,132,61,0.2)" stroke-width="2"/>
+          <circle cx="60" cy="50" r="3" fill="rgba(232,119,34,0.5)"/>
+        </svg>
+      `,
+      style: { bottom: '30%', right: '15%' },
+      depth: 0.3
     }
   ];
 
-  // Mouse parallax effect
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (window.innerWidth < 768) return;
-      
-      const { clientX, clientY } = e;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      
-      const moveX = (clientX - centerX) / centerX;
-      const moveY = (clientY - centerY) / centerY;
-      
-      shapesRef.current.forEach((shape, index) => {
-        if (shape && shapes[index]) {
-          const depth = shapes[index].depth;
-          const translateX = moveX * depth * 30;
-          const translateY = moveY * depth * 30;
-          shape.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
-        }
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  if (isReduced) {
+    return (
+      <div className="background-effects reduced">
+        <div className="simple-gradient" />
+      </div>
+    );
+  }
 
   return (
     <div className="background-effects">
       <canvas ref={canvasRef} className="particle-canvas" />
       
-      {/* Moving text background */}
+      {/* Simplified moving text */}
       <div className="text-background">
-        {movingTexts.slice(0, window.innerWidth <= 768 ? 4 : 8).map((text, index) => (
+        {movingTexts.map((text, index) => (
           <div 
             key={index}
-            className={`moving-text ${index > 5 ? 'vertical' : ''}`}
+            className="moving-text"
             style={{ 
-              '--duration': `${25 + index * 5}s`,
-              animationDelay: `${-index * 3}s`
+              '--duration': `${20 + index * 5}s`,
+              animationDelay: `${-index * 3}s`,
+              top: `${15 + index * 25}%`
             }}
           >
             {text}
@@ -149,19 +172,28 @@ const BackgroundEffects = () => {
         ))}
       </div>
 
+      {/* Simplified gradient */}
       <div className="gradient-overlay" />
       
-      {shapes.map((shape, index) => (
+      {/* Only 2 simple shapes */}
+      {geometricShapes.map((shape, index) => (
         <div
           key={index}
           ref={el => shapesRef.current[index] = el}
-          className="parallax-shape"
+          className={`geometric-shape shape-${shape.type}`}
           style={shape.style}
           dangerouslySetInnerHTML={{ __html: shape.svg }}
         />
       ))}
-      
-      <div className="glow-effect" />
+
+      {/* Simplified mouse glow */}
+      <div 
+        className="mouse-glow"
+        style={{
+          left: `${mousePos.x}px`,
+          top: `${mousePos.y}px`
+        }}
+      />
     </div>
   );
 };

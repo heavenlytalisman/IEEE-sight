@@ -14,7 +14,7 @@ const Hero = () => {
         index++;
       } else {
         clearInterval(timer);
-        setShowCursor(false);
+        setTimeout(() => setShowCursor(false), 1000);
       }
     }, 100);
 
@@ -57,15 +57,15 @@ const Hero = () => {
             
             <div className="hero-stats reveal-up delay-2">
               <div className="stat">
-                <span className="stat-number" data-count="0">0</span>
+                <span className="stat-number" data-count="0">50+</span>
                 <span className="stat-label">Active Members</span>
               </div>
               <div className="stat">
-                <span className="stat-number" data-count="0">0</span>
+                <span className="stat-number" data-count="0">15+</span>
                 <span className="stat-label">Community Projects</span>
               </div>
               <div className="stat">
-                <span className="stat-number" data-count="0">0</span>
+                <span className="stat-number" data-count="0">1000+</span>
                 <span className="stat-label">Lives Impacted</span>
               </div>
             </div>

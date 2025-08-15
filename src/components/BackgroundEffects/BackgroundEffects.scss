@@ -8,6 +8,22 @@
   pointer-events: none;
   z-index: -1;
 
+  &.reduced {
+    .simple-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 98, 155, 0.05) 0%,
+        rgba(0, 132, 61, 0.03) 50%,
+        rgba(232, 119, 34, 0.04) 100%
+      );
+    }
+  }
+
   .particle-canvas {
     position: absolute;
     top: 0;
@@ -16,7 +32,6 @@
     height: 100%;
   }
 
-  // Moving text background (from your original CSS)
   .text-background {
     position: absolute;
     top: 0;
@@ -25,74 +40,65 @@
     height: 100%;
     overflow: hidden;
     z-index: 1;
-    opacity: 0.1;
+    opacity: 0.06;
     pointer-events: none;
   }
 
   .moving-text {
     position: absolute;
-    font-size: clamp(2rem, 8vw, 8rem);
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 98, 155, 0.3);
     white-space: nowrap;
     animation: moveHorizontal var(--duration) linear infinite;
-
-    &.vertical {
-      animation: moveVertical var(--duration) linear infinite;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-    }
-
-    &:nth-child(1) { top: 10%; }
-    &:nth-child(2) { top: 25%; }
-    &:nth-child(3) { top: 40%; }
-    &:nth-child(4) { top: 55%; }
-    &:nth-child(5) { top: 70%; }
-    &:nth-child(6) { top: 85%; }
-    &.vertical:nth-child(7) { left: 20%; }
-    &.vertical:nth-child(8) { left: 80%; }
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    letter-spacing: 0.1em;
+    will-change: transform;
   }
 
   .gradient-overlay {
     position: absolute;
-    top: -25%;
-    left: -25%;
-    width: 150%;
-    height: 150%;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 98, 155, 0.1) 0%,
-      rgba(0, 132, 61, 0.05) 50%,
-      rgba(232, 119, 34, 0.08) 100%
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at 30% 20%,
+      rgba(0, 98, 155, 0.08) 0%,
+      rgba(0, 132, 61, 0.04) 35%,
+      transparent 70%
     );
-    animation: gradientShift 45s ease infinite alternate;
   }
 
-  .parallax-shape {
+  .geometric-shape {
     position: absolute;
     will-change: transform;
-    transition: transform 0.1s ease-out;
-    opacity: 0.7;
+    transition: transform 0.3s ease-out;
+    opacity: 0.6;
 
     svg {
-      filter: blur(0.5px);
+      filter: drop-shadow(0 2px 4px rgba(0, 98, 155, 0.1));
     }
   }
 
-  .glow-effect {
+  .mouse-glow {
     position: absolute;
-    top: 30%;
-    right: 20%;
-    width: 400px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
     background: radial-gradient(
       circle,
-      rgba(0, 98, 155, 0.1) 0%,
-      rgba(232, 119, 34, 0.05) 50%,
+      rgba(0, 98, 155, 0.05) 0%,
       transparent 70%
     );
-    filter: blur(80px);
-    animation: glowPulse 8s ease-in-out infinite;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+
+    @media (hover: hover) {
+      opacity: 1;
+    }
   }
 }
 
@@ -101,45 +107,15 @@
   100% { transform: translateX(100vw); }
 }
 
-@keyframes moveVertical {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-@keyframes glowPulse {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% { 
-    transform: scale(1.3);
-    opacity: 0.8;
-  }
-}
-
 @media (max-width: 768px) {
   .background-effects {
-    .parallax-shape {
-      transform: none !important;
+    .text-background {
+      opacity: 0.03;
     }
     
-    .moving-text {
-      font-size: clamp(1.5rem, 6vw, 4rem);
-      
-      &:nth-child(n+5) {
-        display: none;
-      }
-    }
-    
-    .glow-effect {
-      width: 200px;
-      height: 200px;
-      filter: blur(40px);
+    .mouse-glow,
+    .geometric-shape {
+      display: none;
     }
   }
 }

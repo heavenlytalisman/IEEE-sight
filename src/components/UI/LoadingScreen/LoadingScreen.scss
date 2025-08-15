@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 
   &.fade-out {
     opacity: 0;
@@ -19,34 +19,83 @@
 
 .logo-animation {
   position: relative;
-  width: 150px;
-  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: logoEntrance 0.8s ease-out;
+}
+
+/* Dual logos container */
+.logos-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  animation: logoEntrance 1s ease-out;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .main-logo-loading {
-  width: 120px;
-  height: auto;
+  height: 3rem;
+  width: auto;
   object-fit: contain;
-  z-index: 2;
-  animation: logoFloat 2.5s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
+  animation: logoFloat 2s ease-in-out infinite;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(1.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
-.logo-circle-animation {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
-  z-index: 1;
+.ieee-logo-loading {
+  animation-delay: 0s;
 }
 
-.circle-ring {
+.sight-logo-loading {
+  animation-delay: 0.2s;
+}
+
+/* Logo text fallbacks */
+.logo-text-loading {
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.1em;
+  animation: logoFloat 2s ease-in-out infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.ieee-text-loading {
+  font-size: 2rem;
+  background: rgba(0, 98, 155, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation-delay: 0s;
+}
+
+.sight-text-loading {
+  font-size: 1.5rem;
+  background: rgba(232, 119, 34, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #E87722;
+  animation-delay: 0.2s;
+}
+
+/* Simplified spinner */
+.loading-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.spinner-ring {
   position: absolute;
   top: 0;
   left: 0;
@@ -55,21 +104,10 @@
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-top: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  animation: logoRotate 3s linear infinite;
+  animation: spin 1.5s linear infinite;
 }
 
-.circle-ring-2 {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  border: 1px solid rgba(232, 119, 34, 0.4);
-  border-bottom: 1px solid rgba(232, 119, 34, 0.8);
-  border-radius: 50%;
-  animation: logoRotateReverse 4s linear infinite;
-}
-
+/* Background particles */
 .loading-background {
   position: absolute;
   top: 0;
@@ -82,47 +120,33 @@
 
 .loading-particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.6);
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
-  animation: particleFloat 8s linear infinite;
+  animation: particleFloat 6s linear infinite;
 
   &:nth-child(1) {
-    left: 10%;
+    left: 20%;
     animation-delay: 0s;
-    animation-duration: 8s;
   }
   
   &:nth-child(2) {
-    left: 30%;
+    left: 50%;
     animation-delay: -2s;
-    animation-duration: 10s;
   }
   
   &:nth-child(3) {
-    left: 50%;
+    left: 80%;
     animation-delay: -4s;
-    animation-duration: 12s;
-  }
-  
-  &:nth-child(4) {
-    left: 70%;
-    animation-delay: -6s;
-    animation-duration: 9s;
-  }
-  
-  &:nth-child(5) {
-    left: 90%;
-    animation-delay: -1s;
-    animation-duration: 11s;
   }
 }
 
+/* Animations */
 @keyframes logoEntrance {
   0% {
     opacity: 0;
-    transform: translateY(-50px) scale(0.8);
+    transform: translateY(-30px) scale(0.9);
   }
   100% {
     opacity: 1;
@@ -132,37 +156,22 @@
 
 @keyframes logoFloat {
   0%, 100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-8px);
   }
 }
 
-@keyframes logoGlow {
-  0% {
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(1.1);
-  }
-  100% {
-    filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.3)) brightness(1.2);
-  }
-}
-
-@keyframes logoRotate {
+@keyframes spin {
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes logoRotateReverse {
-  to {
-    transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes particleFloat {
   0% {
-    transform: translateY(100vh) translateX(0);
+    transform: translateY(100vh);
     opacity: 0;
   }
   10% {
@@ -172,39 +181,54 @@
     opacity: 1;
   }
   100% {
-    transform: translateY(-100px) translateX(50px);
+    transform: translateY(-100px);
     opacity: 0;
   }
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
-  .logo-animation {
-    width: 120px;
-    height: 120px;
+  .logos-container {
+    gap: 0.75rem;
   }
-  
+
   .main-logo-loading {
-    width: 100px;
+    height: 2.5rem;
+  }
+
+  .ieee-text-loading {
+    font-size: 1.5rem;
+    padding: 0.4rem 0.8rem;
   }
   
-  .logo-circle-animation {
-    width: 120px;
-    height: 120px;
+  .sight-text-loading {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
   }
 }
 
 @media (max-width: 480px) {
-  .logo-animation {
-    width: 100px;
-    height: 100px;
+  .logos-container {
+    gap: 0.5rem;
+    flex-direction: column;
   }
-  
+
   .main-logo-loading {
-    width: 80px;
+    height: 2rem;
+  }
+
+  .ieee-text-loading {
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
   }
   
-  .logo-circle-animation {
-    width: 100px;
-    height: 100px;
+  .sight-text-loading {
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
   }
 }
