@@ -168,7 +168,6 @@ class EnhancedNavigationManager {
         this.hamburger = document.getElementById('hamburger');
         this.navLinks = document.getElementById('navLinks');
         this.navLinkItems = document.querySelectorAll('.nav-links a[href^="#"]');
-        this.progressBar = document.getElementById('progress-bar');
         this.init();
     }
     
@@ -230,13 +229,6 @@ class EnhancedNavigationManager {
     setupScrollEffects() {
         const debouncedScroll = utils.debounce(() => {
             const scrolled = window.pageYOffset;
-            
-            // Progress bar
-            if (this.progressBar) {
-                const winHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = (scrolled / winHeight) * 100;
-                this.progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
-            }
         }, 10);
         
         window.addEventListener('scroll', debouncedScroll, { passive: true });
@@ -900,35 +892,6 @@ class ModalManager {
     }
 }
 
-// Back to Top Management
-class BackToTopManager {
-    constructor() {
-        this.button = document.getElementById('back-to-top');
-        this.init();
-    }
-    
-    init() {
-        if (this.button) {
-            this.button.addEventListener('click', () => this.scrollToTop());
-            window.addEventListener('scroll', utils.throttle(() => this.toggleVisibility(), 100), { passive: true });
-        }
-    }
-    
-    toggleVisibility() {
-        if (window.pageYOffset > CONFIG.scrollThreshold) {
-            this.button.classList.add('visible');
-        } else {
-            this.button.classList.remove('visible');
-        }
-    }
-    
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-}
 
 // Performance Monitor
 class PerformanceMonitor {
