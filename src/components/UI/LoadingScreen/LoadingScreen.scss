@@ -1,0 +1,210 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, #00629B 0%, #00843D 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+
+  &.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.logo-animation {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: logoEntrance 1s ease-out;
+}
+
+.main-logo-loading {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  animation: logoFloat 2.5s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(1.1);
+}
+
+.logo-circle-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  z-index: 1;
+}
+
+.circle-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: logoRotate 3s linear infinite;
+}
+
+.circle-ring-2 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(232, 119, 34, 0.4);
+  border-bottom: 1px solid rgba(232, 119, 34, 0.8);
+  border-radius: 50%;
+  animation: logoRotateReverse 4s linear infinite;
+}
+
+.loading-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.loading-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: particleFloat 8s linear infinite;
+
+  &:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+  }
+  
+  &:nth-child(2) {
+    left: 30%;
+    animation-delay: -2s;
+    animation-duration: 10s;
+  }
+  
+  &:nth-child(3) {
+    left: 50%;
+    animation-delay: -4s;
+    animation-duration: 12s;
+  }
+  
+  &:nth-child(4) {
+    left: 70%;
+    animation-delay: -6s;
+    animation-duration: 9s;
+  }
+  
+  &:nth-child(5) {
+    left: 90%;
+    animation-delay: -1s;
+    animation-duration: 11s;
+  }
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(1.1);
+  }
+  100% {
+    filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.3)) brightness(1.2);
+  }
+}
+
+@keyframes logoRotate {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes logoRotateReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(50px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-animation {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .main-logo-loading {
+    width: 100px;
+  }
+  
+  .logo-circle-animation {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-animation {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .main-logo-loading {
+    width: 80px;
+  }
+  
+  .logo-circle-animation {
+    width: 100px;
+    height: 100px;
+  }
+}

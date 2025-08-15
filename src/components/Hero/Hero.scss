@@ -1,0 +1,145 @@
+.hero {
+  min-height: 100vh;
+  background: var(--sight-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 4rem 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    text-align: center;
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, #E87722, #ffcc00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typing-text::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .stat {
+      text-align: center;
+
+      .stat-number {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #E87722;
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .interactive-svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+
+    .arc {
+      fill: none;
+      stroke-width: 2;
+      stroke-dasharray: 2 6;
+      animation: rotateArc 30s linear infinite;
+      transform-origin: 50% 50%;
+    }
+
+    .node {
+      transform-origin: center;
+      animation: pulse 2.5s ease-out infinite;
+      fill-opacity: 0.8;
+    }
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes rotateArc {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .interactive-svg {
+      display: none;
+    }
+  }
+}
