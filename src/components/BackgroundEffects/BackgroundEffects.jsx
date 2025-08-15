@@ -3,7 +3,6 @@ import './BackgroundEffects.scss';
 
 const BackgroundEffects = () => {
   const canvasRef = useRef();
-  const shapesRef = useRef([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isReduced, setIsReduced] = useState(false);
 
@@ -23,13 +22,7 @@ const BackgroundEffects = () => {
     };
   }, []);
 
-  // IEEE brand colors
-  const ieeeColors = {
-    blue: '#00629B',
-    orange: '#E87722'
-  };
-
-  // Simplified particle system for better performance
+  // Particle animation system
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || isReduced) return;
@@ -39,16 +32,15 @@ const BackgroundEffects = () => {
     let animationFrame;
 
     const createParticles = () => {
-      // Reduced particle count for performance
-      const count = window.innerWidth < 768 ? 15 : 25;
+      const count = window.innerWidth < 768 ? 20 : 40;
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        alpha: Math.random() * 0.4 + 0.1,
-        dx: (Math.random() - 0.5) * 0.3,
-        dy: (Math.random() - 0.5) * 0.3,
-        color: Math.random() > 0.5 ? ieeeColors.orange : '#ffffff'
+        radius: Math.random() * 3 + 1,
+        alpha: Math.random() * 0.6 + 0.2,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: (Math.random() - 0.5) * 0.4,
+        color: Math.random() > 0.5 ? '#E87722' : '#00629B'
       }));
     };
 
@@ -65,9 +57,11 @@ const BackgroundEffects = () => {
         particle.x += particle.dx;
         particle.y += particle.dy;
         
+        // Bounce off edges
         if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
         
+        // Draw particle
         ctx.globalAlpha = particle.alpha;
         ctx.fillStyle = particle.color;
         ctx.beginPath();
@@ -88,7 +82,7 @@ const BackgroundEffects = () => {
     };
   }, [isReduced]);
 
-  // Simplified mouse tracking (throttled)
+  // Mouse tracking for glow effect
   useEffect(() => {
     if (isReduced) return;
 
@@ -107,42 +101,6 @@ const BackgroundEffects = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [isReduced]);
 
-  // Simplified moving text (reduced count)
-  const movingTexts = [
-    'IEEE SIGHT',
-    'HUMANITARIAN TECH',
-    'COMMUNITY IMPACT',
-    'TECHNOLOGY FOR GOOD'
-  ];
-
-  // Simplified geometric shapes (only 2 for performance)
-  const geometricShapes = [
-    {
-      type: 'circle',
-      svg: `
-        <svg width="150" height="150" viewBox="0 0 150 150">
-          <circle cx="75" cy="75" r="60" fill="none" stroke="rgba(0,98,155,0.1)" stroke-width="2"/>
-          <circle cx="75" cy="75" r="30" fill="none" stroke="rgba(232,119,34,0.2)" stroke-width="1"/>
-          <circle cx="75" cy="75" r="5" fill="rgba(0,98,155,0.6)"/>
-        </svg>
-      `,
-      style: { top: '20%', left: '10%' },
-      depth: 0.5
-    },
-    {
-      type: 'hexagon',
-      svg: `
-        <svg width="120" height="120" viewBox="0 0 120 120">
-          <polygon points="60,10 90,30 90,70 60,90 30,70 30,30" 
-                   fill="none" stroke="rgba(0,132,61,0.2)" stroke-width="2"/>
-          <circle cx="60" cy="50" r="3" fill="rgba(232,119,34,0.5)"/>
-        </svg>
-      `,
-      style: { bottom: '30%', right: '15%' },
-      depth: 0.3
-    }
-  ];
-
   if (isReduced) {
     return (
       <div className="background-effects reduced">
@@ -155,38 +113,7 @@ const BackgroundEffects = () => {
     <div className="background-effects">
       <canvas ref={canvasRef} className="particle-canvas" />
       
-      {/* Simplified moving text */}
-      <div className="text-background">
-        {movingTexts.map((text, index) => (
-          <div 
-            key={index}
-            className="moving-text"
-            style={{ 
-              '--duration': `${20 + index * 5}s`,
-              animationDelay: `${-index * 3}s`,
-              top: `${15 + index * 25}%`
-            }}
-          >
-            {text}
-          </div>
-        ))}
-      </div>
-
-      {/* Simplified gradient */}
-      <div className="gradient-overlay" />
-      
-      {/* Only 2 simple shapes */}
-      {geometricShapes.map((shape, index) => (
-        <div
-          key={index}
-          ref={el => shapesRef.current[index] = el}
-          className={`geometric-shape shape-${shape.type}`}
-          style={shape.style}
-          dangerouslySetInnerHTML={{ __html: shape.svg }}
-        />
-      ))}
-
-      {/* Simplified mouse glow */}
+      {/* Mouse glow effect */}
       <div 
         className="mouse-glow"
         style={{
@@ -194,6 +121,23 @@ const BackgroundEffects = () => {
           top: `${mousePos.y}px`
         }}
       />
+      
+      {/* Geometric shapes */}
+      <div className="geometric-shapes">
+        <div className="shape circle" style={{ top: '20%', left: '10%' }}>
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,98,155,0.2)" strokeWidth="2"/>
+            <circle cx="50" cy="50" r="20" fill="none" stroke="rgba(232,119,34,0.3)" strokeWidth="1"/>
+          </svg>
+        </div>
+        
+        <div className="shape hexagon" style={{ bottom: '30%', right: '15%' }}>
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <polygon points="40,10 60,25 60,55 40,70 20,55 20,25" 
+                     fill="none" stroke="rgba(0,132,61,0.2)" strokeWidth="2"/>
+          </svg>
+        </div>
+      </div>
     </div>
   );
 };
