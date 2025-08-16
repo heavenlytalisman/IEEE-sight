@@ -10,13 +10,13 @@
   padding: 0; /* FIXED: Remove all padding to control alignment precisely */
   height: 50px; /* FIXED: Fixed height instead of min-height */
 
-  /* Default navbar over hero section - white text for visibility */
+  /* Default navbar over hero section - improve text visibility */
   .branding,
   .nav-links a,
   .hamburger span {
-    color: rgba(255, 255, 255, 0.95);
+    color: black; /* bright white for text */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Minimal, modern text shadow */
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   /* Navigation links - perfectly aligned */
@@ -48,18 +48,16 @@
       line-height: 1; /* FIXED: Reset line height for alignment */
 
       &:hover {
-        color: #ffffff;
+        color: black;
         background: none;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         transform: translateY(-1px);
       }
 
       &.active {
-        color: #ffffff;
+        color: black; /* brighter orange shade for active nav indicator */
         background: none;
         font-weight: 600;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-        
+
         &::after {
           content: '';
           position: absolute;
@@ -67,7 +65,8 @@
           left: 50%;
           width: 60%;
           height: 2px;
-          background: rgba(255, 255, 255, 0.8);
+          background: black;
+          opacity: 1;
           transform: translateX(-50%);
           border-radius: 1px;
         }
@@ -83,6 +82,8 @@
     .hamburger span {
       color: var(--secondary-color);
       text-shadow: none;
+      text-shadow: none;
+      text-shadow: none;
     }
 
     .nav-links a {
@@ -97,7 +98,7 @@
       &.active {
         color: var(--sight-orange);
         background: none;
-        
+
         &::after {
           background: var(--sight-orange);
         }
@@ -117,6 +118,7 @@
   .hamburger span {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* minimal shadow */
   }
 }
 
@@ -162,8 +164,9 @@
   width: auto;
   object-fit: contain;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.10)); /* Slightly stronger drop shadow */
   display: block; /* FIXED: Block display for better control */
+  text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15); /* Minimal, professional text shadow */
 
   &:hover {
     transform: scale(1.05);
@@ -206,10 +209,12 @@
 /* Enhanced logo visibility */
 .navbar:not(.scrolled) .logo {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)) brightness(1.1);
+  text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15);
 }
 
 .navbar.scrolled .logo {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.07));
+  text-shadow: none;
 }
 
 .logo-fallback {
@@ -266,17 +271,18 @@
     height: 2px;
     border-radius: 1px;
     transition: all 0.3s ease;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* minimal shadow */
   }
 
   &.active {
     span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
-    
+
     span:nth-child(2) {
       opacity: 0;
     }
-    
+
     span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
@@ -324,7 +330,7 @@
       margin-bottom: 0.3rem;
       font-size: 0.9rem;
       color: white !important;
-      text-shadow: none;
+      text-shadow: none !important;
       transition: all 0.3s ease;
       height: auto; /* FIXED: Auto height for mobile links */
 
@@ -377,7 +383,7 @@
       height: 2.5rem !important;
       font-size: 0.7rem;
     }
-    
+
     &.sight-fallback {
       height: 1.6rem !important;
       font-size: 0.65rem;
@@ -418,7 +424,7 @@
       font-size: 0.65rem;
       padding: 0 0.4rem;
     }
-    
+
     &.sight-fallback {
       height: 1.4rem !important;
       font-size: 0.6rem;
@@ -460,6 +466,5 @@
 .navbar:not(.scrolled) {
   .branding,
   .nav-links a {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.6);
   }
 }

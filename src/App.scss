@@ -1,28 +1,34 @@
-// IEEE SIGHT Official Brand Colors
+// ============================================
+// APP.SCSS - IMPLEMENTING MODERN MINIMAL IEEE SIGHT SHADES
+// WITHOUT CHANGING VARIABLE NAMES
+// ============================================
+
+/* Shades applied using existing variable names */
 :root {
-  /* IEEE SIGHT Official Brand Colors */
-  --primary-color: #00629B; /* IEEE Blue PMS 3015 C */
-  --secondary-color: #004976; /* Darker IEEE Blue */
-  --accent-primary: #0099CC; /* Lighter IEEE Blue */
-  --sight-green: #00843D; /* IEEE Green PMS 348 C */
-  --sight-orange: #E87722; /* IEEE Orange accent */
-  
+  /* Keep IEEE SIGHT Official Brand Colors but update shades */
+
+  --primary-color: #1A84BF;     /* Main interactive blue (modern soft) */
+  --secondary-color: #0F6BB0;   /* Hover/active state blue */
+  --accent-primary: #4D9FCC;    /* Subtle button background */
+  --sight-green: #00843D;       /* Keep original IEEE green */
+  --sight-orange: #FF983A;      /* Softer accent orange */
+
   /* Text & Background */
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-light: #777777;
-  --background: #ffffff;
-  --background-alt: #f8f9fa;
-  --surface: #ffffff;
-  --surface-hover: #f0f4f8;
-  --border: #e0e6ed;
-  
-  /* Status Colors */
-  --success: #00843D;
-  --warning: #E87722;
-  --error: #dc3545;
-  --info: #00629B;
-  
+  --text-primary: #333333;      /* Dark text headers */
+  --text-secondary: #999999;    /* Body text */
+  --text-light: #BBBBBB;        /* Secondary text */
+  --background: #FAFAFA;        /* Ultra-light page background */
+  --background-alt: #F2F2F2;    /* Light card/panel background */
+  --surface: #FFFFFF;           /* Card/surface background */
+  --surface-hover: #E6F0F8;     /* Hover background subtle blue */
+  --border: #DDDDDD;            /* Light border lines */
+
+  /* Status Colors - use softer tints */
+  --success: #AAF2D0;           /* Light success green */
+  --warning: #FFF4C2;           /* Light warning yellow */
+  --error: #F8D0D2;             /* Light error red */
+  --info: #1A84BF;              /* Info uses modern blue */
+
   /* Gradients */
   --humanitarian-gradient: linear-gradient(135deg, var(--primary-color), var(--sight-green));
   --sight-gradient: linear-gradient(45deg, var(--primary-color) 0%, var(--sight-green) 100%);
@@ -35,7 +41,7 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
   --spacing-3xl: 4rem;
-  
+
   /* Typography */
   --font-family-primary: 'Inter', system-ui, -apple-system, sans-serif;
   --font-size-sm: 0.875rem;
@@ -46,24 +52,24 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
-  
+
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+
   /* Transitions */
   --transition: all 0.2s ease;
   --transition-slow: all 0.3s ease;
-  
+
   /* Border Radius */
   --radius: 0.5rem;
   --radius-lg: 1rem;
   --radius-full: 9999px;
 }
 
-/* Base Styles */
+/* Base styles remain unchanged but colors use updated variables */
 * {
   margin: 0;
   padding: 0;
@@ -73,8 +79,6 @@
 html {
   scroll-behavior: smooth;
 }
-
-
 
 body {
   font-family: var(--font-family-primary);
@@ -90,14 +94,12 @@ body {
   min-height: 100vh;
 }
 
-/* Container utility */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
 }
 
-/* Button styles */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -128,12 +130,12 @@ body {
 
   &.secondary {
     background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-primary);
+    border: 2px solid rgba(0,0,0,0.1);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
+      background: var(--surface-hover);
+      border-color: var(--primary-color);
     }
   }
 
@@ -148,7 +150,6 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Section styles */
 .section {
   padding: var(--spacing-3xl) 0;
 
@@ -176,7 +177,6 @@ body {
   }
 }
 
-/* Animation classes - Optimized for performance */
 .reveal-up, .reveal-fade {
   opacity: 0;
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -201,7 +201,6 @@ body {
 .delay-2 { transition-delay: 0.2s; }
 .delay-3 { transition-delay: 0.3s; }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -219,13 +218,11 @@ body {
   background: var(--primary-color);
 }
 
-/* Selection styles */
 ::selection {
-  background: rgba(0, 98, 155, 0.3);
+  background: rgba(0, 132, 61, 0.3);  /* subtle green highlight */
   color: var(--text-primary);
 }
 
-/* Performance optimization for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -236,14 +233,16 @@ body {
   }
 }
 
-/* Optimize for mobile */
 @media (max-width: 768px) {
   .reveal-up, .reveal-fade {
     transition-duration: 0.4s;
   }
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
-/* Focus visible */
 .btn:focus-visible,
 input:focus-visible,
 select:focus-visible,

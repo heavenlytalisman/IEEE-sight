@@ -1,3 +1,14 @@
+// ============================================
+// BACKGROUND-EFFECTS.SCSS - IEEE SIGHT BRAND SHADES (NO GREEN)
+// ============================================
+
+:root {
+  --primary-color: #1A84BF;
+  --primary-color-rgb: 26,132,191;
+  --sight-orange: #FF983A;
+  --sight-orange-rgb: 255,152,58;
+}
+
 .background-effects {
   position: fixed;
   top: 0;
@@ -14,7 +25,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0,98,155,0.05) 0%, rgba(232,119,34,0.04) 100%);
+    // Gradient with only IEEE Sight blue and orange
+    background: linear-gradient(
+      135deg,
+      rgba(var(--primary-color-rgb), 0.05) 0%,
+      rgba(var(--sight-orange-rgb), 0.04) 100%
+    );
+    // Fallback (if variable not supported):
+    // background: linear-gradient(135deg, #1A84BF0D 0%, #FF983A0A 100%);
   }
 
   .particle-canvas {
@@ -29,7 +47,12 @@
     position: absolute;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(232, 119, 34, 0.15) 0%, transparent 70%);
+    // Orange glow in brand shade
+    background: radial-gradient(
+      circle,
+      rgba(var(--sight-orange-rgb), 0.15) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -50,7 +73,7 @@
       animation: float 6s ease-in-out infinite;
 
       svg {
-        filter: drop-shadow(0 2px 4px rgba(0, 98, 155, 0.1));
+        filter: drop-shadow(0 2px 4px rgba(var(--primary-color-rgb), 0.1));
       }
 
       &.circle {
@@ -87,7 +110,7 @@
     .geometric-shapes .shape {
       animation: none !important;
     }
-    
+
     * {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
