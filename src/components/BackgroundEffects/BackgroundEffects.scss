@@ -1,13 +1,6 @@
 // ============================================
-// BACKGROUND-EFFECTS.SCSS - IEEE SIGHT BRAND SHADES (NO GREEN)
+// MINIMAL HUMANITARIAN TECH BACKGROUND EFFECTS
 // ============================================
-
-:root {
-  --primary-color: #1A84BF;
-  --primary-color-rgb: 26,132,191;
-  --sight-orange: #FF983A;
-  --sight-orange-rgb: 255,152,58;
-}
 
 .background-effects {
   position: fixed;
@@ -15,106 +8,286 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  z-index: 0;
   pointer-events: none;
-  z-index: -1;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-out;
 
-  &.reduced .simple-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    // Gradient with only IEEE Sight blue and orange
-    background: linear-gradient(
-      135deg,
-      rgba(var(--primary-color-rgb), 0.05) 0%,
-      rgba(var(--sight-orange-rgb), 0.04) 100%
-    );
-    // Fallback (if variable not supported):
-    // background: linear-gradient(135deg, #1A84BF0D 0%, #FF983A0A 100%);
+  &.loaded {
+    opacity: 1;
   }
 
-  .particle-canvas {
+  // Humanitarian-themed gradient background
+  .humanitarian-gradient {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    background: 
+      radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(26, 132, 191, 0.08) 0%, 
+        transparent 50%),
+      linear-gradient(135deg,
+        rgba(26, 132, 191, 0.02) 0%,
+        rgba(245, 152, 58, 0.015) 50%,
+        rgba(26, 132, 191, 0.025) 100%);
+    
+    transition: background 0.3s ease;
+    will-change: background;
   }
 
-  .mouse-glow {
+  // Minimal tech elements representing global connectivity
+  .tech-elements {
     position: absolute;
-    width: 200px;
-    height: 200px;
-    // Orange glow in brand shade
-    background: radial-gradient(
-      circle,
-      rgba(var(--sight-orange-rgb), 0.15) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  }
+    inset: 0;
+    opacity: calc(1 - var(--scroll-progress, 0) * 0.5);
+    transition: opacity 0.5s ease;
 
-  .geometric-shapes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    .shape {
+    .tech-dot {
       position: absolute;
-      opacity: 0.6;
-      animation: float 6s ease-in-out infinite;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: gentle-pulse 4s ease-in-out infinite;
 
-      svg {
-        filter: drop-shadow(0 2px 4px rgba(var(--primary-color-rgb), 0.1));
-      }
-
-      &.circle {
+      &.tech-dot-1 {
+        top: 20%;
+        left: 15%;
+        background: rgba(26, 132, 191, 0.6);
         animation-delay: 0s;
       }
 
-      &.hexagon {
+      &.tech-dot-2 {
+        top: 65%;
+        right: 25%;
+        background: rgba(245, 152, 58, 0.6);
+        animation-delay: 1.5s;
+      }
+
+      &.tech-dot-3 {
+        bottom: 30%;
+        left: 25%;
+        background: rgba(74, 144, 226, 0.5);
+        animation-delay: 3s;
+      }
+    }
+
+    .tech-connection {
+      position: absolute;
+      height: 1px;
+      opacity: 0.15;
+      background: linear-gradient(90deg, transparent, rgba(26, 132, 191, 0.4), transparent);
+      animation: connection-flow 8s ease-in-out infinite;
+
+      &.tech-connection-1 {
+        top: 20%;
+        left: 15%;
+        width: 200px;
+        transform: rotate(25deg);
+        animation-delay: 2s;
+      }
+
+      &.tech-connection-2 {
+        bottom: 30%;
+        right: 25%;
+        width: 150px;
+        transform: rotate(-15deg);
+        animation-delay: 5s;
+        background: linear-gradient(90deg, transparent, rgba(245, 152, 58, 0.3), transparent);
+      }
+    }
+  }
+
+  // Humanitarian impact circles for hero section
+  .impact-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.6;
+
+    .impact-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(26, 132, 191, 0.2);
+      animation: expand-fade 6s ease-out infinite;
+
+      &.impact-circle-1 {
+        width: 120px;
+        height: 120px;
+        top: 25%;
+        left: 20%;
+        animation-delay: 0s;
+      }
+
+      &.impact-circle-2 {
+        width: 80px;
+        height: 80px;
+        bottom: 35%;
+        right: 30%;
+        border-color: rgba(245, 152, 58, 0.2);
         animation-delay: 3s;
       }
     }
   }
+
+  // Minimal wave for activities/achievements
+  .minimal-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    opacity: 0.7;
+    animation: wave-gentle 3s ease-in-out infinite alternate;
+
+    path {
+      animation: wave-shift 8s ease-in-out infinite;
+    }
+  }
+
+  // Section-specific styling
+  &.section-hero {
+    .humanitarian-gradient {
+      background: 
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+          rgba(26, 132, 191, 0.1) 0%, 
+          transparent 60%),
+        linear-gradient(135deg,
+          rgba(26, 132, 191, 0.03) 0%,
+          rgba(245, 152, 58, 0.02) 100%);
+    }
+  }
+
+  &.section-activities {
+    .humanitarian-gradient {
+      background: linear-gradient(135deg,
+        rgba(26, 132, 191, 0.04) 0%,
+        rgba(245, 152, 58, 0.03) 50%,
+        rgba(26, 132, 191, 0.02) 100%);
+    }
+  }
+
+  &.section-achievements {
+    .humanitarian-gradient {
+      background: linear-gradient(120deg,
+        rgba(245, 152, 58, 0.04) 0%,
+        rgba(26, 132, 191, 0.03) 100%);
+    }
+  }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+// Animations
+@keyframes gentle-pulse {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(1); 
   }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.1); 
   }
 }
 
+@keyframes connection-flow {
+  0%, 100% { 
+    opacity: 0.15; 
+    transform: translateX(0) scale(1, 1);
+  }
+  50% { 
+    opacity: 0.3; 
+    transform: translateX(10px) scale(1.05, 1);
+  }
+}
+
+@keyframes expand-fade {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.5); 
+  }
+  50% { 
+    opacity: 0.4; 
+    transform: scale(1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(1.5); 
+  }
+}
+
+@keyframes wave-gentle {
+  0% { opacity: 0.7; }
+  100% { opacity: 0.9; }
+}
+
+@keyframes wave-shift {
+  0%, 100% { 
+    transform: translateX(0); 
+  }
+  50% { 
+    transform: translateX(-20px); 
+  }
+}
+
+// Reduced motion fallback
+.background-effects.reduced {
+  .humanitarian-gradient,
+  .tech-elements,
+  .impact-overlay,
+  .minimal-wave {
+    display: none;
+  }
+
+  .simple-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(26, 132, 191, 0.02) 0%,
+      rgba(245, 152, 58, 0.015) 100%);
+  }
+}
+
+// Responsive design
 @media (max-width: 768px) {
   .background-effects {
-    .mouse-glow,
-    .geometric-shapes {
-      display: none;
+    .tech-elements {
+      opacity: 0.5;
+
+      .tech-dot {
+        width: 4px;
+        height: 4px;
+      }
+
+      .tech-connection {
+        opacity: 0.1;
+      }
+    }
+
+    .impact-overlay {
+      opacity: 0.3;
+
+      .impact-circle {
+        &.impact-circle-1 {
+          width: 80px;
+          height: 80px;
+        }
+
+        &.impact-circle-2 {
+          width: 60px;
+          height: 60px;
+        }
+      }
     }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .background-effects {
-    .geometric-shapes .shape {
-      animation: none !important;
-    }
+// Performance optimizations
+.background-effects * {
+  will-change: opacity, transform;
+}
 
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .background-effects * {
+    animation: none !important;
+    transition: none !important;
   }
 }

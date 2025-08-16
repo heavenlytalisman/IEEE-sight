@@ -33,6 +33,39 @@ const Activities = () => {
       status: 'past',
       stats: ['120 Participants', '48 Hours', '15 Teams'],
       image: null
+    },
+    {
+      id: 3,
+      category: 'workshop',
+      title: 'AAAI-25 Workshops: AI for Social Impact',
+      description: 'Academic workshop bridging innovations in AI for finance, social media, crime prevention, and education.',
+      date: 'March 3-4, 2025',
+      type: 'Workshop',
+      status: 'upcoming',
+      stats: ['100+ Expected', '2 Days', 'USA'],
+      image: null
+    },
+    {
+      id: 4,
+      category: 'competition',
+      title: 'National Level Coding Competition Finals',
+      description: 'Finals of national competition for young coders. Advanced Python & block-based coding challenges.',
+      date: 'November 2025',
+      type: 'Competition',
+      status: 'upcoming',
+      stats: ['100+ Finalists', '2 Days', 'Bangalore'],
+      image: null
+    },
+    {
+      id: 5,
+      category: 'seminar',
+      title: 'IEEE International Conference on Innovate for Humanitarian',
+      description: 'Conference on technology solutions for global humanitarian challenges. AI, sustainability, disaster resilience, and more.',
+      date: 'November 21-22, 2025',
+      type: 'Seminar',
+      status: 'upcoming',
+      stats: ['Global', 'Hybrid', 'Indore, India'],
+      image: null
     }
   ];
 
@@ -57,6 +90,7 @@ const Activities = () => {
               className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
               onClick={() => setActiveFilter(filter.id)}
               data-filter={filter.id}
+              aria-pressed={activeFilter === filter.id}
             >
               {filter.label}
             </button>
