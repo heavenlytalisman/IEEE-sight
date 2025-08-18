@@ -6,17 +6,24 @@
   background: transparent;
   backdrop-filter: blur(8px);
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding: 0; /* FIXED: Remove all padding to control alignment precisely */
-  height: 50px; /* FIXED: Fixed height instead of min-height */
+  // Enhanced smooth transitions
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  height: 50px;
+  will-change: background-color, backdrop-filter; // Performance optimization
 
   /* Default navbar over hero section - improve text visibility */
   .branding,
   .nav-links a,
   .hamburger span {
-    color: black; /* bright white for text */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Minimal, modern text shadow */
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    color: black;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    // Smooth color transitions
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Navigation links - perfectly aligned */
@@ -30,7 +37,11 @@
     gap: 0.5rem;
     display: flex;
     align-items: center;
-    height: 100%; /* FIXED: Full height for perfect alignment */
+    height: 100%;
+    // Smooth visibility transitions
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     a {
       background: transparent;
@@ -39,29 +50,39 @@
       border-radius: 0;
       font-weight: 500;
       font-size: 0.8rem;
-      transition: all 0.3s ease;
+      // Enhanced smooth transitions for links
+      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                  font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       text-decoration: none;
       display: flex;
       align-items: center;
-      height: 100%; /* FIXED: Match container height */
-      line-height: 1; /* FIXED: Reset line height for alignment */
+      height: 100%;
+      line-height: 1;
 
       &:hover {
         color: black;
         background: none;
         transform: translateY(-1px);
+        // Faster hover transitions
+        transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &.active {
-        color: black; /* brighter orange shade for active nav indicator */
+        color: black;
         background: none;
         font-weight: 600;
+        // Smooth active state transition
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &::after {
           content: '';
           position: absolute;
-          bottom: 8px; /* FIXED: Adjusted for fixed height */
+          bottom: 8px;
           left: 50%;
           width: 60%;
           height: 2px;
@@ -69,56 +90,115 @@
           opacity: 1;
           transform: translateX(-50%);
           border-radius: 1px;
+          // Smooth active indicator animation
+          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
       }
     }
   }
 
-  /* Scrolled state */
+  /* Scrolled state with smooth transitions */
   &.scrolled {
     background: transparent;
+    // Smooth scrolled state transitions
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     .branding,
     .hamburger span {
       color: var(--secondary-color);
       text-shadow: none;
-      text-shadow: none;
-      text-shadow: none;
+      // Smooth color change on scroll
+      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .nav-links a {
       color: var(--secondary-color);
       text-shadow: none;
+      // Smooth scrolled link transitions
+      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         color: var(--primary-color);
         background: none;
+        // Faster hover in scrolled state
+        transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &.active {
         color: var(--sight-orange);
         background: none;
+        // Smooth scrolled active state
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &::after {
           background: var(--sight-orange);
+          // Smooth background color change for indicator
+          transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
       }
     }
 
     .hamburger span {
       background: var(--secondary-color);
+      // Smooth hamburger color change
+      transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .logo-separator {
       background: linear-gradient(135deg, var(--secondary-color), var(--sight-orange));
       opacity: 0.8;
+      // Smooth separator transition
+      transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  /* GLITCH PREVENTION - Disable transitions during navigation */
+  &.navigating,
+  &.navigating *,
+  &.navigating .nav-links a,
+  &.navigating .nav-links a::after,
+  &.navigating .branding,
+  &.navigating .logo,
+  &.navigating .logo-separator {
+    transition: none !important;
+  }
+
+  /* Ensure active states are immediate during navigation */
+  &.navigating .nav-links a.active {
+    color: black !important;
+    font-weight: 600 !important;
+
+    &::after {
+      width: 60% !important;
+      opacity: 1 !important;
+      background: black !important;
+    }
+  }
+
+  &.navigating.scrolled .nav-links a.active {
+    color: var(--sight-orange) !important;
+
+    &::after {
+      background: var(--sight-orange) !important;
     }
   }
 
   .hamburger span {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* minimal shadow */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    // Smooth hamburger line transitions
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -129,18 +209,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%; /* FIXED: Full height for alignment */
+  height: 100%;
 }
 
 .branding {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
-  height: 100%; /* FIXED: Full height for alignment */
+  // Enhanced branding transitions
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
   margin-top: 20px;
+
   &:hover {
     transform: scale(1.02);
+    // Smooth hover transition
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -148,28 +232,38 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  height: 100%; /* FIXED: Full height for alignment */
-  justify-content: center; /* FIXED: Center logos */
+  height: 100%;
+  justify-content: center;
+  // Smooth container transitions
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* FIXED: Full height for alignment */
+  height: 100%;
+  // Smooth wrapper transitions
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base logo styles with perfect alignment */
+/* Base logo styles with perfect alignment and smooth animations */
 .logo {
   width: auto;
   object-fit: contain;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.10)); /* Slightly stronger drop shadow */
-  display: block; /* FIXED: Block display for better control */
-  text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15); /* Minimal, professional text shadow */
+  // Enhanced logo transitions
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.10));
+  display: block;
+  text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15);
+  will-change: transform; // Performance optimization
 
   &:hover {
     transform: scale(1.05);
+    // Smooth hover for logos
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -177,16 +271,16 @@
 .ieee-logo {
   height: 2.8rem !important;
   margin-right: 0 !important;
-  transform: translateY(0) !important; /* FIXED: No vertical offset */
+  transform: translateY(0) !important;
 }
 
 .sight-logo {
   height: 1.8rem !important;
   margin-left: 0 !important;
-  transform: translateY(0) !important; /* FIXED: No vertical offset */
+  transform: translateY(0) !important;
 }
 
-/* LOGO SEPARATOR - perfectly centered */
+/* LOGO SEPARATOR - perfectly centered with smooth animations */
 .logo-separator {
   width: 12px;
   height: 12px;
@@ -194,27 +288,39 @@
   background: linear-gradient(135deg, #00629B, #E87722);
   clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
   display: inline-block;
-  transition: all 0.3s ease;
+  // Enhanced separator transitions
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.9;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
-  flex-shrink: 0; /* FIXED: Prevent shrinking */
-  align-self: center; /* FIXED: Perfect center alignment */
+  flex-shrink: 0;
+  align-self: center;
 
   &:hover {
     transform: scale(1.1);
     opacity: 1;
+    // Smooth separator hover
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-/* Enhanced logo visibility */
+/* Enhanced logo visibility with smooth transitions */
 .navbar:not(.scrolled) .logo {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)) brightness(1.1);
   text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15);
+  // Smooth filter transitions
+  transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled .logo {
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.07));
   text-shadow: none;
+  // Smooth scrolled logo transitions
+  transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-fallback {
@@ -225,7 +331,8 @@
   font-size: 0.75rem;
   border-radius: 4px;
   letter-spacing: 0.3px;
-  transition: all 0.4s ease;
+  // Enhanced fallback transitions
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 
   &.ieee-fallback {
@@ -247,7 +354,7 @@
   }
 }
 
-/* Hamburger with perfect alignment */
+/* Hamburger with perfect alignment and smooth animations */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -257,24 +364,36 @@
   cursor: pointer;
   padding: 0.4rem;
   border-radius: 6px;
-  transition: all 0.4s ease;
-  height: auto; /* FIXED: Auto height for hamburger */
+  // Enhanced hamburger transitions
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: auto;
   align-self: center;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: scale(1.05);
+    // Smooth hamburger hover
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   span {
     width: 20px;
     height: 2px;
     border-radius: 1px;
-    transition: all 0.3s ease;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* minimal shadow */
+    // Enhanced hamburger line transitions
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   &.active {
+    // Smooth hamburger active state
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
     span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
@@ -292,13 +411,15 @@
 .navbar.scrolled .hamburger {
   &:hover {
     background: rgba(0, 0, 0, 0.05);
+    // Smooth scrolled hamburger hover
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-/* Mobile Navigation */
+/* Mobile Navigation with enhanced animations */
 @media (max-width: 768px) {
   .navbar {
-    height: 50px; /* FIXED: Smaller mobile height */
+    height: 50px;
   }
 
   .nav-links {
@@ -311,14 +432,25 @@
     flex-direction: column;
     gap: 0;
     transform: translateY(-100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    // Enhanced mobile menu transitions
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    height: auto; /* FIXED: Auto height for mobile menu */
+    height: auto;
+    opacity: 0;
+    visibility: hidden;
 
     &.show {
       transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      // Smooth show transition
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     a {
@@ -331,19 +463,28 @@
       font-size: 0.9rem;
       color: white !important;
       text-shadow: none !important;
-      transition: all 0.3s ease;
-      height: auto; /* FIXED: Auto height for mobile links */
+      // Enhanced mobile link transitions
+      transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                  color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      height: auto;
 
       &:hover {
         background: rgba(255, 255, 255, 0.1) !important;
         color: white !important;
         transform: translateY(-1px);
+        // Smooth mobile hover
+        transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &.active {
         background: rgba(255, 255, 255, 0.15) !important;
         color: white !important;
         font-weight: 600;
+        // Smooth mobile active state
+        transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &::after {
           display: none;
@@ -353,6 +494,16 @@
       &:last-child {
         margin-bottom: 0;
       }
+    }
+  }
+
+  /* Mobile menu glitch prevention */
+  .navbar.navigating .nav-links a {
+    color: white !important;
+    
+    &.active {
+      color: white !important;
+      background: rgba(255, 255, 255, 0.15) !important;
     }
   }
 
@@ -393,7 +544,7 @@
 
 @media (max-width: 480px) {
   .navbar {
-    height: 45px; /* FIXED: Even smaller for tiny screens */
+    height: 45px;
   }
 
   .navbar-inner {
@@ -452,6 +603,29 @@
   }
 }
 
+/* Performance optimizations */
+.navbar,
+.nav-links,
+.hamburger,
+.branding,
+.logo,
+.logo-separator {
+  will-change: transform;
+}
+
+/* Accessibility - respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbar *,
+  .nav-links,
+  .nav-links *,
+  .hamburger,
+  .hamburger * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 /* Remove any remaining visual effects */
 .navbar::before,
 .navbar::after {
@@ -460,11 +634,4 @@
 
 .nav-links a::before {
   display: none;
-}
-
-/* Ensure text is readable on all backgrounds */
-.navbar:not(.scrolled) {
-  .branding,
-  .nav-links a {
-  }
 }

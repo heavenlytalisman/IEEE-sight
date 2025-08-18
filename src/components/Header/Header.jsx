@@ -10,6 +10,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [logoErrors, setLogoErrors] = useState({ ieee: false, sight: false });
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const navItems = [
     { href: '#home', label: 'Home', id: 'home' },
@@ -20,7 +21,7 @@ const Header = () => {
     { href: '#contact', label: 'Contact', id: 'contact' }
   ];
 
-  // Enhanced scroll tracking
+  // Enhanced scroll tracking - separate from section detection
   useEffect(() => {
     let ticking = false;
     
@@ -36,23 +37,7 @@ const Header = () => {
           } else {
             setIsScrolled(window.scrollY > 300);
           }
-
-          // Active section detection
-          const sections = navItems.map(item => ({
-            id: item.id,
-            element: document.getElementById(item.id)
-          })).filter(section => section.element);
-
-          let currentSection = 'home';
           
-          for (const section of sections) {
-            const rect = section.element.getBoundingClientRect();
-            if (rect.top <= 100 && rect.top + rect.height > 100) {
-              currentSection = section.id;
-            }
-          }
-
-          setActiveSection(currentSection);
           ticking = false;
         });
         ticking = true;
@@ -65,20 +50,114 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Intersection Observer for active section detection
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // Top 20% and bottom 70% margins
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+    };
+
+    const observerCallback = (entries) => {
+      if (isNavigating) return; // Skip during manual navigation
+
+      // Find the section with the largest intersection ratio
+      let maxRatio = 0;
+      let activeId = 'home';
+
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          activeId = entry.target.id;
+        }
+      });
+
+      // Fallback: if no section is intersecting significantly, 
+      // find the closest one to the top of viewport
+      if (maxRatio < 0.1) {
+        let closestDistance = Infinity;
+        let closestId = 'home';
+
+        navItems.forEach(item => {
+          const element = document.getElementById(item.id);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const distance = Math.abs(rect.top);
+            
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestId = item.id;
+            }
+          }
+        });
+
+        activeId = closestId;
+      }
+
+      setActiveSection(activeId);
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    const elementsToObserve = [];
+    navItems.forEach(item => {
+      const element = document.getElementById(item.id);
+      if (element) {
+        observer.observe(element);
+        elementsToObserve.push(element);
+      }
+    });
+
+    // Cleanup function
+    return () => {
+      elementsToObserve.forEach(element => {
+        observer.unobserve(element);
+      });
+      observer.disconnect();
+    };
+  }, [isNavigating]);
+
+  // Enhanced navigation with glitch prevention
   const handleNavClick = (href, sectionId) => {
     const element = document.querySelector(href);
     if (element) {
+      // Prevent scroll-based active section updates during navigation
+      setIsNavigating(true);
+      
+      // Add navigation class to navbar for CSS control
+      const navbar = document.querySelector('.navbar');
+      navbar?.classList.add('navigating');
+      
       const headerOffset = 70;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
+      // Immediately update active section to prevent flickering
+      setActiveSection(sectionId);
+      setIsMenuOpen(false);
+
+      // Smooth scroll to element
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
       });
 
-      setActiveSection(sectionId);
-      setIsMenuOpen(false);
+      // Re-enable section detection after scroll animation completes
+      const scrollDuration = Math.min(Math.abs(offsetPosition - window.pageYOffset) / 2, 1000);
+      
+      setTimeout(() => {
+        setIsNavigating(false);
+        navbar?.classList.remove('navigating');
+        
+        // Force a final check of active section
+        setTimeout(() => {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(sectionId);
+          }
+        }, 100);
+      }, scrollDuration);
     }
   };
 
@@ -90,8 +169,48 @@ const Header = () => {
     setLogoErrors(prev => ({ ...prev, [logoType]: false }));
   };
 
+  // Handle initial page load section detection
+  useEffect(() => {
+    const detectInitialSection = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const sectionId = hash.replace('#', '');
+        const navItem = navItems.find(item => item.id === sectionId);
+        if (navItem) {
+          setActiveSection(sectionId);
+          return;
+        }
+      }
+      
+      // Default detection based on scroll position
+      const scrollY = window.scrollY;
+      if (scrollY < 100) {
+        setActiveSection('home');
+      }
+    };
+
+    detectInitialSection();
+  }, []);
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const sectionId = hash.replace('#', '');
+        const navItem = navItems.find(item => item.id === sectionId);
+        if (navItem) {
+          handleNavClick(hash, sectionId);
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isNavigating ? 'navigating' : ''}`}>
       <div className="navbar-inner">
         <div 
           className="branding" 
