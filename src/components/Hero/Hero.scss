@@ -1,5 +1,6 @@
 // ============================================
 // HERO.SCSS - IEEE SIGHT BRAND CONSISTENCY (NO GREEN)
+// Enhanced visibility for canvas particles & lines
 // ============================================
 
 .hero {
@@ -12,7 +13,7 @@
   overflow: hidden;
   padding-top: 80px;
 
-  // Background Gradient (blue to light gray)
+  // Background Gradient & Interactive Canvas
   .interactive-canvas {
     position: absolute;
     top: 0;
@@ -20,10 +21,16 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    pointer-events: auto;
-    background: linear-gradient(135deg,
-      var(--background) 0%,
-      var(--background-alt) 100%);
+    pointer-events: auto; // Allow mouse interaction for particles
+    background: linear-gradient(135deg, var(--background) 0%, var(--background-alt) 100%);
+    opacity: 0.85; // Slightly increased for particle visibility
+    transition: opacity 0.3s ease;
+    will-change: opacity;
+    
+    // Enhanced particle visibility
+    &:hover {
+      opacity: 0.95;
+    }
   }
 
   // Humanitarian Technology Icons (Blue/Orange Only)
@@ -35,6 +42,7 @@
     height: 100%;
     z-index: 2;
     pointer-events: none;
+    opacity: 1;
   }
 
   .floating-icon {
@@ -45,15 +53,16 @@
     .icon-svg {
       width: 40px;
       height: 40px;
-      opacity: 0.6;
+      opacity: 0.75; // Increased for better visibility over particles
       animation: float-humanitarian-icon 8s ease-in-out infinite;
-      filter: drop-shadow(0 2px 4px rgba(51, 51, 51, 0.1));
+      filter: drop-shadow(0 2px 8px rgba(51, 51, 51, 0.14));
       transition: var(--transition);
+      will-change: transform, opacity;
 
-      // Only IEEE sight blue and orange for icons
+      // Color usage (branding)
       &.health { color: var(--sight-orange); }
       &.education { color: var(--primary-color); }
-      &.environment { color: var(--primary-color); } // Was green, now blue
+      &.environment { color: var(--primary-color); }
       &.infrastructure { color: var(--accent-primary); }
 
       &:hover {
@@ -63,6 +72,7 @@
       }
     }
 
+    // Staggered floating animation delays
     &:nth-child(1) { animation-delay: 0s; }
     &:nth-child(2) { animation-delay: 2s; }
     &:nth-child(3) { animation-delay: 4s; }
@@ -82,15 +92,17 @@
 
   .hero-content {
     text-align: center;
+    pointer-events: auto; // Ensure content is clickable over canvas
 
-    h1 {
+    h1.typing-text {
       font-size: clamp(2.5rem, 8vw, 4rem);
       font-weight: 700;
+      min-height: 2.8em;
       margin-bottom: var(--spacing-lg);
       line-height: 1.2;
       color: var(--text-primary);
+      position: relative;
 
-      // Blue-to-orange gradient highlight (no green)
       .highlight {
         background: linear-gradient(135deg, var(--primary-color) 40%, var(--sight-orange) 100%);
         -webkit-background-clip: text;
@@ -100,14 +112,10 @@
 
         &.glow-effect {
           animation: text-glow-humanitarian 4s ease-in-out infinite alternate;
-
           &::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(135deg, var(--primary-color) 40%, var(--sight-orange) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -122,7 +130,6 @@
       .cursor {
         animation: blink 1s infinite, cursor-glow-humanitarian 3s ease-in-out infinite alternate;
         color: var(--primary-color);
-
         &.pulse-cursor {
           text-shadow: 0 0 6px rgba(26, 132, 191, 0.5);
         }
@@ -165,16 +172,6 @@
         &:nth-child(1) { animation-delay: 1s; }
         &:nth-child(2) { animation-delay: 1.2s; }
         &:nth-child(3) { animation-delay: 1.4s; }
-
-        &:hover {
-          transform: translateY(-3px);
-          transition: var(--transition);
-
-          .stat-number {
-            color: var(--primary-color);
-            text-shadow: 0 0 8px rgba(26, 132, 191, 0.3);
-          }
-        }
       }
 
       .stat-number {
@@ -182,7 +179,6 @@
         font-size: var(--font-size-4xl);
         font-weight: 700;
         color: var(--text-primary);
-        transition: var(--transition);
 
         &.count-up {
           animation: number-highlight-humanitarian 0.5s ease-out;
@@ -196,24 +192,6 @@
         letter-spacing: 0.5px;
         margin-top: var(--spacing-sm);
       }
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--surface-hover);
-        border-radius: var(--radius);
-        opacity: 0;
-        transition: var(--transition);
-        z-index: -1;
-      }
-
-      &:hover::before {
-        opacity: 1;
-      }
     }
   }
 
@@ -222,109 +200,101 @@
     gap: var(--spacing-lg);
     justify-content: center;
     flex-wrap: wrap;
-  }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border: none;
+      border-radius: var(--radius);
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-slow);
+      transform: translateY(15px);
+      opacity: 0;
+      animation: button-reveal-humanitarian 0.6s ease-out forwards;
+      min-width: 180px;
 
-  // Button styles using app.scss variables
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-md) var(--spacing-xl);
-    border: none;
-    border-radius: var(--radius);
-    font-size: var(--font-size-base);
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition-slow);
-    transform: translateY(15px);
-    opacity: 0;
-    animation: button-reveal-humanitarian 0.6s ease-out forwards;
-    min-width: 180px;
+      &:nth-child(1) { animation-delay: 1.6s; }
+      &:nth-child(2) { animation-delay: 1.8s; }
 
-    &:nth-child(1) { animation-delay: 1.6s; }
-    &:nth-child(2) { animation-delay: 1.8s; }
-
-    &.primary {
-      background: var(--primary-color);
-      color: var(--surface);
-      border: 2px solid var(--primary-color);
-      box-shadow: var(--shadow);
-
-      &:hover {
-        background: var(--secondary-color);
-        border-color: var(--secondary-color);
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-lg);
-      }
-    }
-
-    &.secondary {
-      background: var(--surface);
-      color: var(--primary-color);
-      border: 2px solid var(--border);
-
-      &:hover {
-        background: var(--surface-hover);
-        border-color: var(--primary-color);
-        transform: translateY(-3px);
+      &.primary {
+        background: var(--primary-color);
+        color: var(--surface);
+        border: 2px solid var(--primary-color);
         box-shadow: var(--shadow);
+
+        &:hover {
+          background: var(--secondary-color);
+          border-color: var(--secondary-color);
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-lg);
+        }
       }
-    }
+      
+      &.secondary {
+        background: var(--surface);
+        color: var(--primary-color);
+        border: 2px solid var(--border);
 
-    &.pulse-btn {
-      animation: gentle-pulse-humanitarian 4s ease-in-out infinite, 
-                 button-reveal-humanitarian 0.6s ease-out forwards;
-
-      &::before {
+        &:hover {
+          background: var(--surface-hover);
+          border-color: var(--primary-color);
+          transform: translateY(-3px);
+          box-shadow: var(--shadow);
+        }
+      }
+      
+      &.pulse-btn {
+        animation: gentle-pulse-humanitarian 4s ease-in-out infinite,
+          button-reveal-humanitarian 0.6s ease-out forwards;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 0.5s ease;
+          z-index: 1;
+        }
+        &:hover::before {
+          width: 200px;
+          height: 200px;
+        }
+      }
+      
+      &.hover-slide::after {
         content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: all 0.5s ease;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(26, 132, 191, 0.1), transparent);
+        transition: left 0.5s ease;
         z-index: 1;
       }
-
-      &:hover::before {
-        width: 200px;
-        height: 200px;
+      
+      &.hover-slide:hover::after {
+        left: 100%;
       }
-    }
-
-    &.hover-slide::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(26, 132, 191, 0.1), transparent);
-      transition: left 0.5s ease;
-      z-index: 1;
-    }
-
-    &.hover-slide:hover::after {
-      left: 100%;
-    }
-
-    // Focus states using app.scss colors
-    &:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 2px;
-      box-shadow: 0 0 0 4px rgba(26, 132, 191, 0.2);
-    }
-
-    span {
-      position: relative;
-      z-index: 2;
+      
+      &:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(26, 132, 191, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      span { position: relative; z-index: 2; }
     }
   }
 
@@ -335,107 +305,77 @@
     width: 50%;
     height: auto;
     z-index: 2;
-    pointer-events: auto;
-    opacity: 0.6;
-
+    pointer-events: none;
+    opacity: 0.75; // Increased for better visibility
+    
     &.floating-animation {
       animation: float-svg-humanitarian 25s ease-in-out infinite;
     }
-
+    
     .arc {
       fill: none;
-      stroke-width: 1.5;
-      stroke-opacity: 0.5;
+      stroke-width: 2.0; // Slightly thicker for enhanced visibility
+      stroke-opacity: 0.7; // Increased opacity
       transform-origin: 50% 50%;
       animation: draw-path-humanitarian 5s ease-in-out forwards;
 
-      // Only blue/orange strokes
-      &.arc-1 { 
-        animation-delay: 1s; 
+      &.arc-1 {
+        animation-delay: 1s;
         stroke: var(--primary-color);
-        stroke-dasharray: 400; 
-        stroke-dashoffset: 400; 
+        stroke-dasharray: 400;
+        stroke-dashoffset: 400;
       }
-      &.arc-2 { 
-        animation-delay: 1.5s; 
+      &.arc-2 {
+        animation-delay: 1.5s;
         stroke: var(--accent-primary);
-        stroke-dasharray: 350; 
-        stroke-dashoffset: 350; 
+        stroke-dasharray: 350;
+        stroke-dashoffset: 350;
       }
-      &.arc-3 { 
-        animation-delay: 2s; 
-        stroke: var(--sight-orange); // Was green, now orange
-        stroke-dasharray: 380; 
-        stroke-dashoffset: 380; 
+      &.arc-3 {
+        animation-delay: 2s;
+        stroke: var(--sight-orange);
+        stroke-dasharray: 380;
+        stroke-dashoffset: 380;
       }
     }
-
+    
     .node {
       transform-origin: center;
       cursor: pointer;
       transition: var(--transition);
-      fill-opacity: 0.7;
+      fill-opacity: 0.9; // Increased node visibility
       animation: node-pulse-humanitarian 6s ease-in-out infinite;
 
-      // Only blue/orange nodes (was green, now orange)
-      &.node-1 { 
-        animation-delay: 0s; 
-        fill: var(--accent-primary); // Use accent blue
-      }
-      &.node-2 { 
-        animation-delay: 1s; 
-        fill: var(--primary-color);
-      }
-      &.node-3 { 
-        animation-delay: 2s; 
-        fill: var(--sight-orange);
-      }
-      &.node-4 { 
-        animation-delay: 3s; 
-        fill: var(--accent-primary);
-      }
-      &.node-5 { 
-        animation-delay: 4s; 
-        fill: var(--secondary-color);
-      }
-      &.node-6 { 
-        animation-delay: 5s; 
-        fill: var(--primary-color);
-      }
+      &.node-1 { animation-delay: 0s; fill: var(--accent-primary); }
+      &.node-2 { animation-delay: 1s; fill: var(--primary-color); }
+      &.node-3 { animation-delay: 2s; fill: var(--sight-orange); }
+      &.node-4 { animation-delay: 3s; fill: var(--accent-primary); }
+      &.node-5 { animation-delay: 4s; fill: var(--secondary-color); }
+      &.node-6 { animation-delay: 5s; fill: var(--primary-color); }
 
       &:hover {
         fill-opacity: 1;
         transform: scale(1.4);
-        filter: drop-shadow(0 0 8px currentColor);
+        filter: drop-shadow(0 0 12px currentColor);
       }
     }
   }
 }
 
-// Humanitarian Technology Keyframe Animations
+// Keyframe Animations
 @keyframes float-humanitarian-icon {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
-    opacity: 0.6;
-  }
-  50% { 
-    transform: translateY(-12px) rotate(2deg); 
-    opacity: 0.8;
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.75; }
+  50% { transform: translateY(-16px) rotate(3deg); opacity: 1; }
 }
 
 @keyframes text-glow-humanitarian {
-  0% { 
-    filter: drop-shadow(0 0 3px rgba(26, 132, 191, 0.3));
-  }
-  100% { 
-    filter: drop-shadow(0 0 12px rgba(26, 132, 191, 0.5)) drop-shadow(0 0 20px rgba(245, 152, 58, 0.2));
-  }
+  0% { filter: drop-shadow(0 0 3px rgba(26, 132, 191, 0.3)); }
+  100% { filter: drop-shadow(0 0 18px rgba(26, 132, 191, 0.7)) drop-shadow(0 0 28px rgba(245, 152, 58, 0.3)); }
 }
 
 @keyframes cursor-glow-humanitarian {
   0% { text-shadow: 0 0 3px rgba(26, 132, 191, 0.5); }
-  100% { text-shadow: 0 0 10px rgba(26, 132, 191, 0.8), 0 0 15px rgba(245, 152, 58, 0.3); }
+  100% { text-shadow: 0 0 14px rgba(26, 132, 191, 0.9), 0 0 25px rgba(245, 152, 58, 0.4); }
 }
 
 @keyframes fade-in-up-humanitarian {
@@ -444,16 +384,13 @@
 }
 
 @keyframes stat-reveal-humanitarian {
-  0% { opacity: 0; transform: translateY(15px); }
+  0% { opacity: 0; transform: translateY(10px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes number-highlight-humanitarian {
   0% { transform: scale(1); }
-  50% { 
-    transform: scale(1.03);
-    color: var(--primary-color);
-  }
+  50% { transform: scale(1.05); color: var(--primary-color); }
   100% { transform: scale(1); }
 }
 
@@ -464,44 +401,23 @@
 
 @keyframes gentle-pulse-humanitarian {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.005); }
+  50% { transform: scale(1.01); }
 }
 
 @keyframes float-svg-humanitarian {
-  0%, 100% { 
-    transform: translateY(0px) translateX(0px) rotate(0deg); 
-    opacity: 0.6; 
-  }
-  33% { 
-    transform: translateY(-8px) translateX(5px) rotate(1deg); 
-    opacity: 0.7; 
-  }
-  66% { 
-    transform: translateY(-5px) translateX(-3px) rotate(-0.5deg); 
-    opacity: 0.8; 
-  }
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.75; }
+  33% { transform: translateY(-14px) translateX(10px) rotate(2deg); opacity: 1; }
+  66% { transform: translateY(-9px) translateX(-5px) rotate(-1deg); opacity: 0.9; }
 }
 
 @keyframes draw-path-humanitarian {
-  0% { 
-    stroke-dashoffset: inherit; 
-    stroke-opacity: 0; 
-  }
-  100% { 
-    stroke-dashoffset: 0; 
-    stroke-opacity: 0.5; 
-  }
+  0% { stroke-dashoffset: inherit; stroke-opacity: 0; }
+  100% { stroke-dashoffset: 0; stroke-opacity: 0.7; }
 }
 
 @keyframes node-pulse-humanitarian {
-  0%, 100% { 
-    transform: scale(1); 
-    opacity: 0.7; 
-  }
-  50% { 
-    transform: scale(1.08); 
-    opacity: 0.9; 
-  }
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.11); opacity: 1; }
 }
 
 @keyframes blink {
@@ -513,38 +429,42 @@
 @media (max-width: 768px) {
   .hero {
     .humanitarian-icons {
-      opacity: 0.4; // Reduce icon visibility on mobile
-      
-      .floating-icon .icon-svg {
-        width: 30px;
-        height: 30px;
-      }
+      opacity: 0.6;
+      .floating-icon .icon-svg { width: 32px; height: 32px; }
     }
     
-    .interactive-canvas {
-      opacity: 0.3;
+    .interactive-canvas { 
+      opacity: 0.75;
+      cursor: auto; // Restore default cursor on mobile
     }
     
-    .hero-stats {
-      flex-direction: column;
-      gap: var(--spacing-lg);
+    .hero-stats { 
+      flex-direction: column; 
+      gap: var(--spacing-lg); 
     }
-
+    
     .hero-ctas {
       flex-direction: column;
       align-items: center;
-      
-      .btn {
-        width: 100%;
-        max-width: 280px;
-      }
+      .btn { width: 100%; max-width: 280px; }
     }
+    
+    .interactive-svg { 
+      width: 70%; 
+      opacity: 0.65; 
+      bottom: -100px; 
+    }
+    
+    .hero-content h1.typing-text { 
+      font-size: clamp(2rem, 6vw, 2.8rem); 
+    }
+  }
+}
 
-    .interactive-svg {
-      width: 70%;
-      opacity: 0.4;
-      bottom: -100px;
-    }
+@media (max-width: 480px) {
+  .hero {
+    .interactive-svg { display: none; }
+    .hero-content h1.typing-text { font-size: 2rem; }
   }
 }
 
@@ -554,6 +474,7 @@
     animation: none !important;
     transition: none !important;
   }
+  .interactive-canvas { opacity: 0 !important; }
 }
 
 // Performance optimizations
@@ -562,8 +483,8 @@
   .floating-icon,
   .interactive-svg,
   .btn,
-  .stat {
-    will-change: transform;
+  .stat { 
+    will-change: transform; 
   }
 }
 
@@ -579,7 +500,7 @@
   border-radius: var(--radius);
   z-index: 1000;
   
-  &:focus {
-    top: var(--spacing-md);
+  &:focus { 
+    top: var(--spacing-md); 
   }
 }

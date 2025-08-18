@@ -1,6 +1,37 @@
+.section.alt {
+  background: var(--background-alt, #f8fafc);
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary, #1a1a1a);
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary, #666);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
 .achievements-timeline {
   position: relative;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 
   &::before {
@@ -9,81 +40,177 @@
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: var(--border);
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-color, #00629B), var(--border, #e2e8f0));
     transform: translateX(-50%);
+    border-radius: 2px;
 
     @media (max-width: 768px) {
-      left: var(--spacing-lg);
+      left: 40px;
     }
   }
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: 4rem;
+  outline: none;
+  display: flex;
+  align-items: flex-start;
+  min-height: 120px;
 
-  &:nth-child(odd) .achievement-card {
-    margin-right: calc(50% + var(--spacing-xl));
-
-    @media (max-width: 768px) {
-      margin-right: 0;
-      margin-left: calc(var(--spacing-lg) * 3);
+  &:focus-visible {
+    .achievement-card {
+      outline: 2px solid var(--primary-color, #00629B);
+      outline-offset: 4px;
     }
   }
 
-  &:nth-child(even) .achievement-card {
-    margin-left: calc(50% + var(--spacing-xl));
+  // Odd items (left side)
+  &:nth-child(odd) {
+    justify-content: flex-end;
+    
+    .achievement-card {
+      margin-right: 60px; // Space for timeline marker
+      max-width: 380px;
+    }
+
+    .timeline-marker {
+      left: calc(50% - 40px); // Position marker next to center line
+    }
 
     @media (max-width: 768px) {
-      margin-left: calc(var(--spacing-lg) * 3);
+      justify-content: flex-start;
+      
+      .achievement-card {
+        margin-right: 0;
+        margin-left: 80px;
+        max-width: none;
+      }
+
+      .timeline-marker {
+        left: 0;
+      }
+    }
+  }
+
+  // Even items (right side)
+  &:nth-child(even) {
+    justify-content: flex-start;
+    
+    .achievement-card {
+      margin-left: 60px; // Space for timeline marker
+      max-width: 380px;
+    }
+
+    .timeline-marker {
+      left: calc(50% - 40px); // Position marker next to center line
+    }
+
+    @media (max-width: 768px) {
+      justify-content: flex-start;
+      
+      .achievement-card {
+        margin-left: 80px;
+        max-width: none;
+      }
+
+      .timeline-marker {
+        left: 0;
+      }
     }
   }
 }
 
 .timeline-marker {
   position: absolute;
-  left: 50%;
-  top: var(--spacing-lg);
-  transform: translateX(-50%);
+  top: 20px;
   width: 80px;
   height: 80px;
-  background: var(--primary-color);
-  border-radius: var(--radius-full);
+  background: var(--primary-color, #00629B);
+  border: 4px solid white;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 700;
-  z-index: 2;
-  box-shadow: var(--shadow-lg);
+  font-size: 1rem;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 98, 155, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(0, 98, 155, 0.35);
+  }
 
   @media (max-width: 768px) {
-    left: var(--spacing-lg);
     width: 60px;
     height: 60px;
-    font-size: var(--font-size-sm);
+    font-size: 0.85rem;
+    top: 15px;
   }
 }
 
 .achievement-card {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
+  background: var(--surface, #fff);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  width: 100%;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  // Add connecting line from card to marker
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    width: 20px;
+    height: 2px;
+    background: var(--border, #e2e8f0);
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  // Left side cards - line goes right
+  .timeline-item:nth-child(odd) &::before {
+    right: -20px;
+  }
+
+  // Right side cards - line goes left  
+  .timeline-item:nth-child(even) &::before {
+    left: -20px;
   }
 }
 
 .achievement-image {
   position: relative;
-  height: 200px;
-  background: var(--background-alt);
+  height: 180px;
+  background: var(--background-alt, #f1f5f9);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   img {
     width: 100%;
@@ -94,43 +221,157 @@
 
 .achievement-badge {
   position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  background: rgba(0, 0, 0, 0.7);
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius);
-  font-size: var(--font-size-sm);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+  }
 }
 
 .achievement-content {
-  padding: var(--spacing-xl);
+  padding: 1.5rem;
 
   h3 {
-    font-size: var(--font-size-xl);
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-md);
+    font-size: 1.2rem;
+    color: var(--primary-color, #00629B);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    line-height: 1.3;
   }
 
   p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+    color: var(--text-secondary, #666);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
   }
 }
 
 .achievement-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: 0.5rem;
 
   .stat {
-    font-size: var(--font-size-xs);
+    font-size: 0.75rem;
     background: rgba(0, 98, 155, 0.1);
-    color: var(--primary-color);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius);
-    font-weight: 500;
+    color: var(--primary-color, #00629B);
+    padding: 0.3rem 0.7rem;
+    border-radius: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    .stat-icon {
+      font-size: 0.8rem;
+      color: var(--primary-color, #00629B);
+    }
+
+    &:hover {
+      background: rgba(0, 98, 155, 0.2);
+      transform: translateY(-1px);
+    }
   }
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .achievements-timeline {
+    max-width: none;
+    margin: 0;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .timeline-item {
+    margin-bottom: 3rem;
+  }
+
+  .achievement-image {
+    height: 140px;
+  }
+
+  .achievement-content {
+    padding: 1.2rem;
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .achievement-stats {
+    .stat {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-item {
+    &:nth-child(odd) .achievement-card,
+    &:nth-child(even) .achievement-card {
+      margin-left: 70px;
+      margin-right: 0;
+      max-width: none;
+    }
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    font-size: 0.75rem;
+  }
+
+  .achievement-content {
+    padding: 1rem;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .timeline-marker,
+  .achievement-card,
+  .achievement-badge,
+  .stat {
+    transition: none !important;
+  }
+}
+
+// Focus management
+.timeline-item:focus-within .achievement-card {
+  outline: 2px solid var(--primary-color, #00629B);
+  outline-offset: 2px;
 }

@@ -1,147 +1,231 @@
-.contact-content {
+.contact-section {
+  background: var(--background-alt, #f8fafc);
+  padding: 3rem 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color, #00629B);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--text-secondary, #666);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}
+
+.contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-3xl);
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
   align-items: start;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
-  }
-}
-
-.contact-form-section {
-  h3 {
-    font-size: var(--font-size-2xl);
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-xl);
+    gap: 1.5rem;
   }
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: 1.2rem;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 
-  label {
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+.form-field {
+  position: relative;
+
+  .field-icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color, #00629B);
+    opacity: 0.7;
+    font-size: 1rem;
+    z-index: 2;
   }
 
   input,
-  select,
   textarea {
-    padding: var(--spacing-md);
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    font-size: var(--font-size-base);
-    background: var(--surface);
-    color: var(--text-primary);
-    transition: var(--transition);
+    width: 100%;
+    padding: 0.7rem 0.7rem 0.7rem 2.5rem;
+    border: 1.5px solid var(--border, #e2e8f0);
+    border-radius: 8px;
     font-family: inherit;
+    font-size: 0.95rem;
+    background: white;
+    color: var(--text-primary, #222);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
 
     &:focus {
       outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(0, 98, 155, 0.1);
+      border-color: var(--primary-color, #00629B);
+      box-shadow: 0 0 0 2px rgba(0,98,155,0.08);
     }
 
     &.error {
-      border-color: var(--error);
-      background: rgba(239, 68, 68, 0.05);
+      border-color: #DC2626;
+      background: #FFF5F5;
+    }
+
+    &::placeholder {
+      color: #999;
     }
   }
 
   textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 80px;
+    line-height: 1.4;
+    padding-top: 0.7rem;
+  }
+
+  .char-count {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.8rem;
+    font-size: 0.7rem;
+    color: #999;
+    background: white;
+    padding: 0 0.2rem;
+  }
+
+  .error {
+    color: #DC2626;
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+    display: block;
   }
 }
 
-.error-message {
-  color: var(--error);
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-xs);
-}
-
 .submit-btn {
-  position: relative;
+  background: var(--primary-color, #00629B);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    background: #004f7a;
+    transform: translateY(-1px);
+  }
 
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
 
-  .btn-loading {
-    display: none;
-  }
-
-  &.loading {
-    .btn-text {
-      opacity: 0.7;
-    }
-    
-    .btn-loading {
-      display: inline;
-      margin-left: var(--spacing-sm);
-    }
+  &.success {
+    background: #059669;
   }
 }
 
-.contact-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-lg);
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
 }
 
-.contact-card {
-  background: var(--surface);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  text-align: center;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  background: white;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-primary, #222);
+  border: 1px solid var(--border, #e2e8f0);
+  transition: all 0.2s;
+  font-size: 0.9rem;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color, #00629B);
+    box-shadow: 0 2px 8px rgba(0,98,155,0.08);
   }
 
   .contact-icon {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-md);
+    color: var(--primary-color, #00629B);
+    font-size: 1.1rem;
+    flex-shrink: 0;
   }
 
-  h4 {
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-sm);
+  span {
+    font-weight: 500;
+  }
+}
+
+// Mobile optimizations
+@media (max-width: 500px) {
+  .contact-section {
+    padding: 2rem 0;
   }
 
-  p {
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-md);
-    line-height: 1.5;
+  .container {
+    padding: 0 1rem;
   }
 
-  .contact-link {
-    display: inline-block;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 2px solid var(--primary-color);
-    border-radius: var(--radius);
-    transition: var(--transition);
+  .contact-header {
+    margin-bottom: 1.5rem;
 
-    &:hover {
-      background: var(--primary-color);
-      color: white;
+    h2 {
+      font-size: 1.5rem;
     }
   }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color, #00629B);
+  outline-offset: 1px;
 }

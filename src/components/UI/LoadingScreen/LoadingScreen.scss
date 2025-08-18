@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #00629B 0%, #00843D 100%);
+  background: linear-gradient(45deg, var(--primary-color) 0%, var(--sight-orange) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +25,6 @@
   animation: logoEntrance 0.8s ease-out;
 }
 
-/* Dual logos container */
 .logos-container {
   display: flex;
   align-items: center;
@@ -34,201 +33,102 @@
   position: relative;
   z-index: 2;
 }
-
 .logo-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.main-logo-loading {
-  height: 3rem;
+/* IEEE logo: much bigger, strong minimal drop shadow and brightness */
+.main-logo-loading.ieee-logo-loading {
+  height: 4.8rem;
   width: auto;
   object-fit: contain;
   animation: logoFloat 2s ease-in-out infinite;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(1.1);
+  filter: drop-shadow(0 7px 22px rgba(0,0,0,0.68)) brightness(1.32);
   transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  &:hover { transform: scale(1.08); }
 }
 
-.ieee-logo-loading {
-  animation-delay: 0s;
+/* SIGHT logo: smaller, enhanced clarity with shadow/brightness */
+.main-logo-loading.sight-logo-loading {
+  height: 2.8rem;
+  width: auto;
+  object-fit: contain;
+  animation: logoFloat 2s ease-in-out infinite;
+  filter: drop-shadow(0 5px 14px rgba(0,0,0,0.62)) brightness(1.33);
+  transition: transform 0.3s ease;
+  &:hover { transform: scale(1.06); }
 }
 
-.sight-logo-loading {
-  animation-delay: 0.2s;
-}
+.ieee-logo-loading { animation-delay: 0s; }
+.sight-logo-loading { animation-delay: 0.2s; }
 
-/* Logo text fallbacks */
+/* Text fallback styles for error case */
 .logo-text-loading {
   font-weight: 700;
   color: white;
   letter-spacing: 0.1em;
   animation: logoFloat 2s ease-in-out infinite;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.67);
   padding: 0.5rem 1rem;
   border-radius: 8px;
   backdrop-filter: blur(10px);
 }
 
 .ieee-text-loading {
-  font-size: 2rem;
-  background: rgba(0, 98, 155, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation-delay: 0s;
+  font-size: 2.6rem;
+  background: rgba(26, 132, 191, 0.37);
+  border: 1px solid rgba(255,255,255,0.35);
 }
 
 .sight-text-loading {
-  font-size: 1.5rem;
-  background: rgba(232, 119, 34, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #E87722;
+  font-size: 1.6rem;
+  background: rgba(255,152,58,0.38);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--sight-orange);
   animation-delay: 0.2s;
 }
 
-/* Simplified spinner */
+/* Loading spinner below logos */
 .loading-spinner {
-  position: relative;
   width: 60px;
   height: 60px;
-}
-
-.spinner-ring {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  animation: spin 1.5s linear infinite;
-}
-
-/* Background particles */
-.loading-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.loading-particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  animation: particleFloat 6s linear infinite;
-
-  &:nth-child(1) {
-    left: 20%;
-    animation-delay: 0s;
-  }
-  
-  &:nth-child(2) {
-    left: 50%;
-    animation-delay: -2s;
-  }
-  
-  &:nth-child(3) {
-    left: 80%;
-    animation-delay: -4s;
-  }
-}
-
-/* Animations */
-@keyframes logoEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes logoFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top: 6px solid var(--primary-color);
+  animation: spin 1.3s linear infinite;
+  margin-top: 1rem;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
 }
 
-@keyframes particleFloat {
-  0% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
+@keyframes logoEntrance {
+  0% { opacity: 0; transform: translateY(-30px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-8px);}
 }
 
-/* Responsive design */
+/* Responsive design for logo sizing */
 @media (max-width: 768px) {
-  .logos-container {
-    gap: 0.75rem;
-  }
-
-  .main-logo-loading {
-    height: 2.5rem;
-  }
-
-  .ieee-text-loading {
-    font-size: 1.5rem;
-    padding: 0.4rem 0.8rem;
-  }
-  
-  .sight-text-loading {
-    font-size: 1.2rem;
-    padding: 0.4rem 0.8rem;
-  }
-  
-  .loading-spinner {
-    width: 50px;
-    height: 50px;
-  }
+  .logos-container { gap: 0.75rem; }
+  .main-logo-loading.ieee-logo-loading { height: 3.2rem; }
+  .main-logo-loading.sight-logo-loading { height: 1.8rem; }
+  .ieee-text-loading { font-size: 1.4rem; }
+  .sight-text-loading { font-size: 1rem; }
+  .loading-spinner { width: 42px; height: 42px; border-width: 5px; }
 }
 
 @media (max-width: 480px) {
-  .logos-container {
-    gap: 0.5rem;
-    flex-direction: column;
-  }
-
-  .main-logo-loading {
-    height: 2rem;
-  }
-
-  .ieee-text-loading {
-    font-size: 1.2rem;
-    padding: 0.3rem 0.6rem;
-  }
-  
-  .sight-text-loading {
-    font-size: 1rem;
-    padding: 0.3rem 0.6rem;
-  }
+  .logos-container { flex-direction: column; gap: 0.45rem; }
+  .main-logo-loading.ieee-logo-loading { height: 2.2rem; }
+  .main-logo-loading.sight-logo-loading { height: 1rem; }
+  .ieee-text-loading { font-size: 1rem; }
+  .sight-text-loading { font-size: 0.7rem; }
 }
