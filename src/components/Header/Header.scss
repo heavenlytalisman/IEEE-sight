@@ -1,3 +1,6 @@
+/* Header.scss */
+
+/* Base Navbar */
 .navbar {
   position: fixed;
   top: 0;
@@ -6,21 +9,19 @@
   background: transparent;
   backdrop-filter: blur(8px);
   z-index: 1000;
-  // Enhanced smooth transitions
+  padding: 0;
+  height: 50px;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0;
-  height: 50px;
-  will-change: background-color, backdrop-filter; // Performance optimization
+  will-change: background-color, backdrop-filter;
 
   /* Default navbar over hero section - improve text visibility */
   .branding,
   .nav-links a,
-  .hamburger span {
+  .mobile-menu-toggle .menu-line {
     color: black;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    // Smooth color transitions
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -28,17 +29,14 @@
 
   /* Navigation links - perfectly aligned */
   .nav-links {
-    background: none;
-    backdrop-filter: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
-    gap: 0.5rem;
     display: flex;
+    gap: 0.5rem;
     align-items: center;
     height: 100%;
-    // Smooth visibility transitions
+    background: none;
+    backdrop-filter: none;
+    padding: 0;
+    box-shadow: none;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -50,32 +48,27 @@
       border-radius: 0;
       font-weight: 500;
       font-size: 0.8rem;
-      // Enhanced smooth transitions for links
-      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                  background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                  font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       text-decoration: none;
       display: flex;
       align-items: center;
       height: 100%;
       line-height: 1;
+      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                  font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         color: black;
-        background: none;
         transform: translateY(-1px);
-        // Faster hover transitions
         transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
                     transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &.active {
         color: black;
-        background: none;
         font-weight: 600;
-        // Smooth active state transition
         transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                     font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -90,7 +83,6 @@
           opacity: 1;
           transform: translateX(-50%);
           border-radius: 1px;
-          // Smooth active indicator animation
           transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                       background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                       opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -102,16 +94,14 @@
   /* Scrolled state with smooth transitions */
   &.scrolled {
     background: transparent;
-    // Smooth scrolled state transitions
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     .branding,
-    .hamburger span {
+    .mobile-menu-toggle .menu-line {
       color: var(--secondary-color);
       text-shadow: none;
-      // Smooth color change on scroll
       transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                   text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -119,42 +109,34 @@
     .nav-links a {
       color: var(--secondary-color);
       text-shadow: none;
-      // Smooth scrolled link transitions
       transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                   text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         color: var(--primary-color);
-        background: none;
-        // Faster hover in scrolled state
         transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
                     transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &.active {
         color: var(--sight-orange);
-        background: none;
-        // Smooth scrolled active state
         transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &::after {
           background: var(--sight-orange);
-          // Smooth background color change for indicator
           transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
       }
     }
 
-    .hamburger span {
+    .mobile-menu-toggle .menu-line {
       background: var(--secondary-color);
-      // Smooth hamburger color change
       transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .logo-separator {
       background: linear-gradient(135deg, var(--secondary-color), var(--sight-orange));
       opacity: 0.8;
-      // Smooth separator transition
       transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                   opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -190,16 +172,6 @@
       background: var(--sight-orange) !important;
     }
   }
-
-  .hamburger span {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    // Smooth hamburger line transitions
-    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
 }
 
 .navbar-inner {
@@ -216,15 +188,12 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  // Enhanced branding transitions
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   margin-top: 20px;
 
   &:hover {
     transform: scale(1.02);
-    // Smooth hover transition
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -234,7 +203,6 @@
   gap: 0.5rem;
   height: 100%;
   justify-content: center;
-  // Smooth container transitions
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -243,7 +211,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  // Smooth wrapper transitions
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -251,33 +218,26 @@
 .logo {
   width: auto;
   object-fit: contain;
-  // Enhanced logo transitions
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.10));
   display: block;
   text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15);
-  will-change: transform; // Performance optimization
+  will-change: transform;
 
   &:hover {
     transform: scale(1.05);
-    // Smooth hover for logos
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-/* LOGO SIZES with perfect alignment */
+/* LOGO SIZES with perfect alignment - IEEE always larger than SIGHT */
 .ieee-logo {
   height: 2.8rem !important;
-  margin-right: 0 !important;
-  transform: translateY(0) !important;
 }
 
 .sight-logo {
   height: 1.8rem !important;
-  margin-left: 0 !important;
-  transform: translateY(0) !important;
 }
 
 /* LOGO SEPARATOR - perfectly centered with smooth animations */
@@ -288,39 +248,16 @@
   background: linear-gradient(135deg, #00629B, #E87722);
   clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
   display: inline-block;
-  // Enhanced separator transitions
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.9;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
-  flex-shrink: 0;
-  align-self: center;
 
   &:hover {
     transform: scale(1.1);
     opacity: 1;
-    // Smooth separator hover
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
-}
-
-/* Enhanced logo visibility with smooth transitions */
-.navbar:not(.scrolled) .logo {
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)) brightness(1.1);
-  text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15);
-  // Smooth filter transitions
-  transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navbar.scrolled .logo {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.07));
-  text-shadow: none;
-  // Smooth scrolled logo transitions
-  transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-fallback {
@@ -331,7 +268,6 @@
   font-size: 0.75rem;
   border-radius: 4px;
   letter-spacing: 0.3px;
-  // Enhanced fallback transitions
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 
@@ -340,7 +276,6 @@
     padding: 0 0.8rem;
     background: var(--primary-color);
     color: white;
-    margin-right: 0;
     font-size: 0.8rem;
   }
 
@@ -349,142 +284,218 @@
     padding: 0 0.5rem;
     background: var(--sight-orange);
     color: white;
-    margin-left: 0;
     font-size: 0.7rem;
   }
 }
 
-/* Hamburger with perfect alignment and smooth animations */
-.hamburger {
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 3px;
-  background: transparent;
+  align-items: center;
+  justify-content: center;
+  background: none;
   border: none;
   cursor: pointer;
-  padding: 0.4rem;
-  border-radius: 6px;
-  // Enhanced hamburger transitions
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  height: auto;
-  align-self: center;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
-    // Smooth hamburger hover
-    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.08);
+    transform: scale(1.02);
   }
 
-  span {
+  .menu-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 20px;
+    height: 16px;
+    position: relative;
+  }
+
+  .menu-line {
+    position: absolute;
+    width: 100%;
     height: 2px;
+    background: black;
     border-radius: 1px;
-    // Enhanced hamburger line transitions
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+    }
   }
 
   &.active {
-    // Smooth hamburger active state
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+    .menu-line:nth-child(1) {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
     }
 
-    span:nth-child(2) {
+    .menu-line:nth-child(2) {
       opacity: 0;
+      transform: scale(0);
     }
 
-    span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+    .menu-line:nth-child(3) {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
     }
   }
 }
 
-.navbar.scrolled .hamburger {
+.navbar.scrolled .mobile-menu-toggle {
   &:hover {
     background: rgba(0, 0, 0, 0.05);
-    // Smooth scrolled hamburger hover
-    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .menu-line {
+    background: var(--secondary-color);
   }
 }
 
-/* Mobile Navigation with enhanced animations */
+/* Mobile Styles */
 @media (max-width: 768px) {
   .navbar {
-    height: 50px;
+    height: 60px;
+    background: #ffffff; /* Solid white background */
+    backdrop-filter: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+    &.scrolled {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
   }
 
+  .navbar-inner {
+    padding: 0 1.2rem;
+  }
+
+  .branding {
+    margin-top: 12px;
+  }
+
+  /* Logo layout on mobile */
+  .logos-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+  }
+
+  .logo-wrapper,
+  .logo-separator {
+    margin: 0 !important;
+    align-self: center;
+  }
+
+  .ieee-logo {
+    height: 2.2rem !important;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15)) brightness(1.02) !important;
+  }
+
+  .sight-logo {
+    height: 1.4rem !important;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15)) brightness(1.02) !important;
+  }
+
+  .logo-separator {
+    width: 6px;
+    height: 6px;
+    margin: 0 0.3rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  }
+
+  .logo-fallback {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+
+    &.ieee-fallback {
+      height: 2.2rem !important;
+      font-size: 0.6rem;
+      padding: 0 0.5rem;
+      font-weight: 700;
+    }
+
+    &.sight-fallback {
+      height: 1.4rem !important;
+      font-size: 0.5rem;
+      padding: 0 0.4rem;
+      font-weight: 700;
+    }
+  }
+
+  /* Mobile menu */
   .nav-links {
     position: fixed;
-    top: 100%;
+    top: 61px;
     left: 1rem;
     right: 1rem;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(20px);
+    background: #ffffff;
+    backdrop-filter: none;
     flex-direction: column;
-    gap: 0;
-    transform: translateY(-100%);
-    // Enhanced mobile menu transitions
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px);
     opacity: 0;
     visibility: hidden;
+    z-index: 999;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &.show {
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
-      // Smooth show transition
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                  visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     a {
-      padding: 1rem 1.2rem;
+      padding: 1rem;
       width: 100%;
       text-align: center;
       background: transparent !important;
-      border-radius: 8px;
-      margin-bottom: 0.3rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
       font-size: 0.9rem;
-      color: white !important;
+      color: #2c3e50 !important;
       text-shadow: none !important;
-      // Enhanced mobile link transitions
+      font-weight: 500;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                   transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
                   color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      height: auto;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1) !important;
-        color: white !important;
+        background: rgba(0, 98, 155, 0.08) !important;
+        color: var(--primary-color, #00629B) !important;
         transform: translateY(-1px);
-        // Smooth mobile hover
-        transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &.active {
-        background: rgba(255, 255, 255, 0.15) !important;
-        color: white !important;
+        background: rgba(var(--sight-orange-rgb, 232, 119, 34), 0.1) !important;
+        color: var(--sight-orange, #E87722) !important;
         font-weight: 600;
-        // Smooth mobile active state
-        transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                    font-weight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-color: rgba(var(--sight-orange-rgb, 232, 119, 34), 0.2);
 
         &::after {
           display: none;
@@ -493,62 +504,46 @@
 
       &:last-child {
         margin-bottom: 0;
+        border-bottom: none;
       }
     }
   }
 
-  /* Mobile menu glitch prevention */
-  .navbar.navigating .nav-links a {
-    color: white !important;
-    
-    &.active {
-      color: white !important;
-      background: rgba(255, 255, 255, 0.15) !important;
-    }
-  }
-
-  .hamburger {
+  .mobile-menu-toggle {
     display: flex;
-  }
+    padding: 0.4rem;
 
-  .logos-container {
-    gap: 0.4rem;
-  }
-
-  .ieee-logo {
-    height: 2.5rem !important;
-  }
-
-  .sight-logo {
-    height: 1.6rem !important;
-  }
-
-  .logo-separator {
-    width: 10px;
-    height: 10px;
-    margin: 0 4px;
-  }
-
-  .logo-fallback {
-    &.ieee-fallback {
-      height: 2.5rem !important;
-      font-size: 0.7rem;
+    &:hover {
+      background: rgba(0, 0, 0, 0.06);
     }
+  }
 
-    &.sight-fallback {
-      height: 1.6rem !important;
-      font-size: 0.65rem;
+  .navbar.navigating .nav-links a {
+    color: #2c3e50 !important;
+    opacity: 1 !important;
+
+    &.active {
+      color: var(--sight-orange, #E87722) !important;
+      background: rgba(var(--sight-orange-rgb, 232, 119, 34), 0.1) !important;
     }
   }
 }
 
+/* Small mobile screens */
 @media (max-width: 480px) {
   .navbar {
-    height: 45px;
+    height: 56px !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .navbar-inner {
-    padding: 0 0.8rem;
+    padding: 0 1rem;
+  }
+
+  .branding {
+    margin-top: 10px;
   }
 
   .logos-container {
@@ -556,71 +551,61 @@
   }
 
   .ieee-logo {
-    height: 2.2rem !important;
+    height: 2rem !important;
   }
 
   .sight-logo {
-    height: 1.4rem !important;
+    height: 1.2rem !important;
   }
 
   .logo-separator {
-    width: 8px;
-    height: 8px;
-    margin: 0 3px;
-  }
-
-  .logo-fallback {
-    &.ieee-fallback {
-      height: 2.2rem !important;
-      font-size: 0.65rem;
-      padding: 0 0.4rem;
-    }
-
-    &.sight-fallback {
-      height: 1.4rem !important;
-      font-size: 0.6rem;
-      padding: 0 0.3rem;
-    }
+    width: 5px;
+    height: 5px;
+    margin: 0 0.2rem;
   }
 
   .nav-links {
-    left: 0.5rem;
-    right: 0.5rem;
+    top: 57px;
+    left: 0.75rem;
+    right: 0.75rem;
     padding: 0.8rem;
-
-    a {
-      padding: 0.8rem;
-      font-size: 0.85rem;
-    }
   }
 
-  .hamburger {
+  .nav-links a {
+    padding: 0.9rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
     padding: 0.3rem;
 
-    span {
+    .menu-icon {
       width: 18px;
+      height: 14px;
     }
   }
 }
 
-/* Performance optimizations */
+/* Performance & Accessibility */
 .navbar,
 .nav-links,
-.hamburger,
+.mobile-menu-toggle,
 .branding,
 .logo,
 .logo-separator {
   will-change: transform;
 }
 
-/* Accessibility - respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .navbar,
   .navbar *,
   .nav-links,
   .nav-links *,
-  .hamburger,
-  .hamburger * {
+  .mobile-menu-toggle,
+  .mobile-menu-toggle * {
     transition: none !important;
     animation: none !important;
   }

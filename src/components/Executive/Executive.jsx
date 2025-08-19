@@ -49,10 +49,10 @@ const Executive = () => {
   };
 
   return (
-    <section id="committee" className="section alt">
+    <section id="Execom" className="section alt">
       <div className="container">
         <div className="section-header">
-          <h2>Executive Committee</h2>
+          <h2>Execom</h2>
           <p className="section-subtitle">
             Dedicated leaders driving our humanitarian technology mission
           </p>

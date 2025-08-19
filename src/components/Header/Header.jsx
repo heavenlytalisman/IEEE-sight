@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Header.scss';
 
 // Import your logos
@@ -11,11 +11,12 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [logoErrors, setLogoErrors] = useState({ ieee: false, sight: false });
   const [isNavigating, setIsNavigating] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navItems = [
     { href: '#home', label: 'Home', id: 'home' },
     { href: '#about', label: 'About', id: 'about' },
-    { href: '#committee', label: 'Committee', id: 'committee' },
+    { href: '#Execom', label: 'Execom', id: 'Execom' },
     { href: '#activities', label: 'Activities', id: 'activities' },
     { href: '#achievements', label: 'Achievements', id: 'achievements' },
     { href: '#contact', label: 'Contact', id: 'contact' }
@@ -54,14 +55,13 @@ const Header = () => {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -70% 0px', // Top 20% and bottom 70% margins
+      rootMargin: '-20% 0px -70% 0px',
       threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5]
     };
 
     const observerCallback = (entries) => {
-      if (isNavigating) return; // Skip during manual navigation
+      if (isNavigating) return;
 
-      // Find the section with the largest intersection ratio
       let maxRatio = 0;
       let activeId = 'home';
 
@@ -72,8 +72,6 @@ const Header = () => {
         }
       });
 
-      // Fallback: if no section is intersecting significantly, 
-      // find the closest one to the top of viewport
       if (maxRatio < 0.1) {
         let closestDistance = Infinity;
         let closestId = 'home';
@@ -99,7 +97,6 @@ const Header = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe all sections
     const elementsToObserve = [];
     navItems.forEach(item => {
       const element = document.getElementById(item.id);
@@ -109,7 +106,6 @@ const Header = () => {
       }
     });
 
-    // Cleanup function
     return () => {
       elementsToObserve.forEach(element => {
         observer.unobserve(element);
@@ -122,10 +118,8 @@ const Header = () => {
   const handleNavClick = (href, sectionId) => {
     const element = document.querySelector(href);
     if (element) {
-      // Prevent scroll-based active section updates during navigation
       setIsNavigating(true);
       
-      // Add navigation class to navbar for CSS control
       const navbar = document.querySelector('.navbar');
       navbar?.classList.add('navigating');
       
@@ -133,24 +127,20 @@ const Header = () => {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      // Immediately update active section to prevent flickering
       setActiveSection(sectionId);
       setIsMenuOpen(false);
 
-      // Smooth scroll to element
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
       });
 
-      // Re-enable section detection after scroll animation completes
       const scrollDuration = Math.min(Math.abs(offsetPosition - window.pageYOffset) / 2, 1000);
       
       setTimeout(() => {
         setIsNavigating(false);
         navbar?.classList.remove('navigating');
         
-        // Force a final check of active section
         setTimeout(() => {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 100 && rect.bottom >= 100) {
@@ -161,13 +151,13 @@ const Header = () => {
     }
   };
 
-  const handleLogoError = (logoType) => {
+  const handleLogoError = useCallback((logoType) => {
     setLogoErrors(prev => ({ ...prev, [logoType]: true }));
-  };
+  }, []);
 
-  const handleLogoLoad = (logoType) => {
+  const handleLogoLoad = useCallback((logoType) => {
     setLogoErrors(prev => ({ ...prev, [logoType]: false }));
-  };
+  }, []);
 
   // Handle initial page load section detection
   useEffect(() => {
@@ -182,7 +172,6 @@ const Header = () => {
         }
       }
       
-      // Default detection based on scroll position
       const scrollY = window.scrollY;
       if (scrollY < 100) {
         setActiveSection('home');
@@ -209,8 +198,46 @@ const Header = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Loading state management
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Mobile menu accessibility and outside click handling
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isMenuOpen && !e.target.closest('.navbar')) {
+        setIsMenuOpen(false);
+      }
+    };
+    
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+      
+      const firstLink = document.querySelector('.nav-links a');
+      firstLink?.focus();
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isNavigating ? 'navigating' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isNavigating ? 'navigating' : ''} ${isLoading ? 'loading' : ''}`}>
       <div className="navbar-inner">
         <div 
           className="branding" 
@@ -269,16 +296,18 @@ const Header = () => {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - IEEE SB CEK Style */}
         <button 
-          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+          className={`mobile-menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span className="menu-icon">
+            <span className="menu-line"></span>
+            <span className="menu-line"></span>
+            <span className="menu-line"></span>
+          </span>
         </button>
       </div>
     </nav>
