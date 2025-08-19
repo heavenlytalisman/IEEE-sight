@@ -64,7 +64,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 id="about-heading">About IEEE SIGHT</h2>
+            <h2 id="about-heading">About IEEE <span class="sight-htext">SIGHT</span></h2>
             <p className="section-subtitle">
               IEEE’s Special Interest Group on Humanitarian Technology empowers volunteers worldwide to solve global issues with scalable, sustainable solutions.
             </p>
